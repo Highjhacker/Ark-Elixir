@@ -6,8 +6,14 @@ defmodule Ark_Elixir.Mixfile do
       app: :ark_elixir,
       version: "0.1.0",
       elixir: "~> 1.5",
+      build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps()
+      deps: deps(),
+      package: package(),
+      description: description(),
+      name: "Ark_Elixir",
+      source_url: "https://github.com/Highjhacker/Ark-Elixir",
+      docs: [main: "ark_elixir", extras: ["README.md"]]
     ]
   end
 
@@ -24,7 +30,8 @@ defmodule Ark_Elixir.Mixfile do
     [
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
-      {:httpotion, "~> 3.0.2"}
+      {:httpotion, "~> 3.0.2"},
+      {:ex_doc, "~> 0.18.1", only: :dev, runtime: false}
     ]
   end
 
@@ -36,5 +43,9 @@ defmodule Ark_Elixir.Mixfile do
           licenses: ["MIT"],
           links: %{"Github" => "https://github.com/Highjhacker/Ark-Elixir"}
       ]
+  end
+
+  defp description do
+      "Ark API Wrapper in Elixir."
   end
 end

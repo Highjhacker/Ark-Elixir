@@ -1,11 +1,10 @@
 # Ark_Elixir
 
-**TODO: Add description**
+Ark API Wrapper in Elixir.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ark_elixir` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `ark_elixir` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -19,3 +18,63 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/ark_elixir](https://hexdocs.pm/ark_elixir).
 
+## Usage
+
+### Account
+
+```elixir
+
+```
+
+### Block
+
+```elixir
+
+```
+
+### Delegate
+
+```elixir
+
+```
+
+### Loader
+
+```elixir
+
+```
+
+### MultiSignature
+
+```elixir
+
+```
+
+### Peer
+
+```elixir
+
+```
+
+### Signature
+
+```elixir
+
+```
+
+### Transaction
+
+```elixir
+
+```
+
+### Transport
+
+```elixir
+
+``` 
+
+
+## License
+
+Ark_Elixir is under MIT license. See the LICENSE file for more informations.
