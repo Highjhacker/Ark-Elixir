@@ -7,7 +7,7 @@ defmodule Ark_Elixir.Transport do
     Get a list of peers.
     """
     def get_peers do
-        HTTPotion.get("https://api.arknode.net/peer/list")
+        HTTPotion.get("https://api.arknode.net/peer/list", query: %{nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"})
         |> Map.get(:body)
     end
 
