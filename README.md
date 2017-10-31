@@ -96,12 +96,15 @@ iex> Ark_Elixir.Transaction.get_unconfirmed_transactions
 ### Transport
 
 ```elixir
+iex> Ark_Elixir.Transport_get_height
 
+"{\"success\":true,\"height\":2392808,\"header\":{\"id\":\"13222473903032259412\",\"height\":2392808,\"version\":0,\"totalAmount\":0,\"totalFee\":0,\"reward\":200000000,\"payloadHash\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"payloadLength\":0,\"timestamp\":19312072,\"numberOfTransactions\":0,\"previousBlock\":\"1125980187326942368\",\"generatorPublicKey\":\"0298e1bceff94716ca65914e31fbea0fba8e545d9a188dde902fc1d4fcd679f015\",\"blockSignature\":\"3045022100a2647afbe75bf16185557f72cf3baf2213b7d462fdb738528ffa50648b8fa05502203cac9980a7906b932153670aa32e4f4c264ff1df7f2fb79f1429030260e35e3d\"}}"
 ```
 
 ## TODOS
 
-- [ ] Add the parameters nethash, version and port to ALL of the requests.
+- [x] Add the parameters nethash, version and port to ALL of the requests.
+    - [ ] Currently the parameters nethash version and port are passed, but it should be more clear than that, worth looking at metaprogramming & macros or something like that.
 - [ ] Unit testing.
 - [ ] Better documentation.
 - [ ] Handle optionals parameters in the http requests.
