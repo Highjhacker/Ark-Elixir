@@ -3,7 +3,7 @@
 Ark API Wrapper in Elixir.
 
 ## Built with
-- [Elixir](https://elixir-lang.org/) (1.5.0)
+- [Elixir](https://elixir-lang.org/) (1.5)
 - [HTTPotion](https://github.com/myfreeweb/httpotion)
 - [Poison](https://github.com/devinus/poison)
 
