@@ -2,6 +2,11 @@
 
 Ark API Wrapper in Elixir.
 
+## Built with
+- [Elixir](https://elixir-lang.org/) (1.5.0)
+- [HTTPotion](https://github.com/myfreeweb/httpotion)
+- [Poison](https://github.com/devinus/poison)
+
 ## Installation
 
 The package can be installed by adding `ark_elixir` to your list of dependencies in `mix.exs`:
@@ -135,6 +140,9 @@ iex> Ark_Elixir.Transport_get_status
 - [ ] Handle optionals parameters in the http requests.
 - [ ] ...
 
+## Authors
+
+- Jolan Beer - Highjhacker
 
 ## License
 
