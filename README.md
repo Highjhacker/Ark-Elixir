@@ -3,7 +3,7 @@
 Ark API Wrapper in Elixir.
 
 ## Built with
-- [Elixir](https://elixir-lang.org/) (1.5)
+- [Elixir](https://elixir-lang.org/) (1.5.0)
 - [HTTPotion](https://github.com/myfreeweb/httpotion)
 - [Poison](https://github.com/devinus/poison)
 
@@ -19,7 +19,7 @@ def deps do
 end
 ```
 
-Full documentation docs can be found at [https://hexdocs.pm/ark_elixir](https://hexdocs.pm/ark_elixir).
+Full documentation docs can be found at [https://hexdocs.pm/ark_elixir](https://hexdocs.pm/ark_elixir/Ark_Elixir.html).
 
 ## Usage
 
