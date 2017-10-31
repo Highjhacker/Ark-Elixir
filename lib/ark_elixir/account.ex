@@ -12,8 +12,8 @@ defmodule Ark_Elixir.Account do
         ...
     """
     def get_balance(address) do
-        HTTPotion.get("https://api.arknode.net/api/accounts/getBalance", query: %{address: address})
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/accounts/getBalance", query: %{address: address})
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -25,8 +25,8 @@ defmodule Ark_Elixir.Account do
         ...
     """
     def get_public_key(address) do
-        HTTPotion.get("https://api.arknode.net/api/accounts/getPublicKey", query: %{address: address})
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/accounts/getPublicKey", query: %{address: address})
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -38,8 +38,8 @@ defmodule Ark_Elixir.Account do
         ...
     """
     def get_delegate_fee do
-        HTTPotion.get("https://api.arknode.net/api/accounts/delegates/fee")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/accounts/delegates/fee")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -52,8 +52,8 @@ defmodule Ark_Elixir.Account do
     """
     def get_delegates(address) do
         # orderBy, limit, offset
-        HTTPotion.get("https://api.arknode.net/api/accounts/delegates", query: %{address: address})
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/accounts/delegates", query: %{address: address})
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -65,8 +65,8 @@ defmodule Ark_Elixir.Account do
         ...
     """
     def get_accounts(address) do
-        HTTPotion.get("https://api.arknode.net/api/accounts", query: %{address: address})
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/accounts", query: %{address: address})
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -79,8 +79,8 @@ defmodule Ark_Elixir.Account do
     """
     def get_top_accounts do
         # limit, offset
-        HTTPotion.get("https://api.arknode.net/api/accounts/top")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/accounts/top")
+        Poison.Parser.parse!(request.body)
     end
 
 end

@@ -12,8 +12,8 @@ defmodule Ark_Elixir.Peer do
         ...
     """
     def get_peer(ip, port) do
-        HTTPotion.get("https://api.arknode.net/api/peers/get", query: %{ip: ip, port: port})
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/peers/get", query: %{ip: ip, port: port})
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -26,8 +26,8 @@ defmodule Ark_Elixir.Peer do
     """
     def get_peers do
         # port, state, os, version, orderBy, limit, offset
-        HTTPotion.get("https://api.arknode.net/api/peers")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/peers")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -39,7 +39,7 @@ defmodule Ark_Elixir.Peer do
         ...
     """
     def get_peer_version do
-        HTTPotion.get("https://api.arknode.net/api/peers/version")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/peers/version")
+        Poison.Parser.parse!(request.body)
     end
 end

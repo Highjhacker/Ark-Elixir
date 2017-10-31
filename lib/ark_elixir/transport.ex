@@ -12,9 +12,9 @@ defmodule Ark_Elixir.Transport do
         ...
     """
     def get_peers do
-        HTTPotion.get("https://api.arknode.net/peer/list",
+        request = HTTPotion.get("https://api.arknode.net/peer/list",
             headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        |> Map.get(:body)
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -26,9 +26,9 @@ defmodule Ark_Elixir.Transport do
         ...
     """
     def get_common_blocks(ids) do
-        HTTPotion.get("https://api.arknode.net/peer/blocks/common", query: %{ids: ids},
+        request = HTTPotion.get("https://api.arknode.net/peer/blocks/common", query: %{ids: ids},
             headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        |> Map.get(:body)
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -40,9 +40,9 @@ defmodule Ark_Elixir.Transport do
         ...
     """
     def get_blocks(address) do
-        HTTPotion.get("https://api.arknode.net/peer/blocks", query: %{address: address},
+        request = HTTPotion.get("https://api.arknode.net/peer/blocks", query: %{address: address},
             headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        |> Map.get(:body)
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -54,9 +54,9 @@ defmodule Ark_Elixir.Transport do
         ...
     """
     def get_block(address) do
-        HTTPotion.get("https://api.arknode.net/peer/block", query: %{address: address},
+        request = HTTPotion.get("https://api.arknode.net/peer/block", query: %{address: address},
             headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        |> Map.get(:body)
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -68,9 +68,9 @@ defmodule Ark_Elixir.Transport do
         ...
     """
     def get_transactions do
-        HTTPotion.get("https://api.arknode.net/peer/transactions",
+        request = HTTPotion.get("https://api.arknode.net/peer/transactions",
             headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        |> Map.get(:body)
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -94,9 +94,9 @@ defmodule Ark_Elixir.Transport do
         ...
     """
     def get_transactions_from_ids(ids) do
-        HTTPotion.get("https://api.arknode.net/peer/transactionsFromIds", query: %{ids: ids},
+        request = HTTPotion.get("https://api.arknode.net/peer/transactionsFromIds", query: %{ids: ids},
             headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        |> Map.get(:body)
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -107,9 +107,9 @@ defmodule Ark_Elixir.Transport do
         iex> Ark_Elixir.Transport.get_height
     """
     def get_height do
-        HTTPotion.get("https://api.arknode.net/peer/height",
+        request = HTTPotion.get("https://api.arknode.net/peer/height",
             headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        |> Map.get(:body)
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -121,8 +121,8 @@ defmodule Ark_Elixir.Transport do
         ...
     """
     def get_status do
-        HTTPotion.get("https://api.arknode.net/peer/status",
+        request = HTTPotion.get("https://api.arknode.net/peer/status",
             headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        |> Map.get(:body)
+        Poison.Parser.parse!(request.body)
     end
 end

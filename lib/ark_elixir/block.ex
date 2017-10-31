@@ -12,8 +12,8 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_block(id) do
-        HTTPotion.get("https://api.arknode.net/api/blocks/get", query: %{id: id})
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/get", query: %{id: id})
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -26,8 +26,8 @@ defmodule Ark_Elixir.Block do
     """
     def get_blocks do
         # limit, orderBy, offset, generatorPublicKey, totalAmount, totalFee, reward, previousBlock, height
-        HTTPotion.get("https://api.arknode.net/api/blocks")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -39,8 +39,8 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_epoch do
-        HTTPotion.get("https://api.arknode.net/api/blocks/getEpoch")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/getEpoch")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -52,8 +52,8 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_height do
-        HTTPotion.get("https://api.arknode.net/api/blocks/getHeight")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/getHeight")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -65,8 +65,8 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_nethash do
-        HTTPotion.get("https://api.arknode.net/api/blocks/getNethash")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/getNethash")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -78,8 +78,8 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_fee do
-        HTTPotion.get("https://api.arknode.net/api/blocks/getFee")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/getFee")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -91,8 +91,8 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_fees do
-        HTTPotion.get("https://api.arknode.net/api/blocks/getFees")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/getFees")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -104,8 +104,8 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_milestone do
-        HTTPotion.get("https://api.arknode.net/api/blocks/getMilestone")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/getMilestone")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -117,8 +117,8 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_reward do
-        HTTPotion.get("https://api.arknode.net/api/blocks/getReward")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/getReward")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -130,8 +130,8 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_supply do
-        HTTPotion.get("https://api.arknode.net/api/blocks/getSupply")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/getSupply")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -143,7 +143,7 @@ defmodule Ark_Elixir.Block do
         ...
     """
     def get_status do
-        HTTPotion.get("https://api.arknode.net/api/blocks/getStatus")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/blocks/getStatus")
+        Poison.Parser.parse!(request.body)
     end
 end

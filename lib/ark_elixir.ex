@@ -11,4 +11,5 @@ defmodule Ark_Elixir do
   #alias Ark_Elixir.Signature
   #alias Ark_Elixir.Transaction
   #alias Ark_Elixir.Transport
+
 end

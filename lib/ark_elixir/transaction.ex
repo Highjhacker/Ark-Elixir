@@ -12,8 +12,8 @@ defmodule Ark_Elixir.Transaction do
         ...
     """
     def get_transaction(id) do
-        HTTPotion.get("https://api.arknode.net/api/transactions/get", query: %{id: id})
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/transactions/get", query: %{id: id})
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -26,8 +26,8 @@ defmodule Ark_Elixir.Transaction do
     """
     def get_transactions do
         # blockId, limit, type, orderBy, offset, senderPublicKey, vendorField, ownerPublicKey, ownerADdress, senderId, recipientId, amount, fee
-        HTTPotion.get("https://api.arknode.net/api/transactions")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/transactions")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -39,8 +39,8 @@ defmodule Ark_Elixir.Transaction do
         ...
     """
     def get_unconfirmed_transaction(id) do
-        HTTPotion.get("https://api.arknode.net/api/transactions/unconfirmed/get", query: %{id: id})
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/transactions/unconfirmed/get", query: %{id: id})
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -53,7 +53,7 @@ defmodule Ark_Elixir.Transaction do
     """
     def get_unconfirmed_transactions do
         # senderPublicKey, address
-        HTTPotion.get("https://api.arknode.net/api/transactions/unconfirmed")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/transactions/unconfirmed")
+        Poison.Parser.parse!(request.body)
     end
 end

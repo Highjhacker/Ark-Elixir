@@ -12,8 +12,8 @@ defmodule Ark_Elixir.Loader do
         ...
     """
     def get_status do
-        HTTPotion.get("https://api.arknode.net/api/loader/status")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/loader/status")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -25,8 +25,8 @@ defmodule Ark_Elixir.Loader do
         ...
     """
     def get_sync do
-        HTTPotion.get("https://api.arknode.net/api/loader/status/sync")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/loader/status/sync")
+        Poison.Parser.parse!(request.body)
     end
 
     @doc """
@@ -38,7 +38,7 @@ defmodule Ark_Elixir.Loader do
         ...
     """
     def autoconfigure do
-        HTTPotion.get("https://api.arknode.net/api/loader/autoconfigure")
-        |> Map.get(:body)
+        request = HTTPotion.get("https://api.arknode.net/api/loader/autoconfigure")
+        Poison.Parser.parse!(request.body)
     end
 end
