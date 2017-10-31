@@ -5,6 +5,11 @@ defmodule Ark_Elixir.Signature do
 
     @doc """
     Get the fee for a signature.
+
+    ## Examples
+
+        iex> Ark_Elixir.Signature.get_signature_fee
+        ...
     """
     def get_signature_fee do
         HTTPotion.get("https://api.arknode.net/api/signatures/fee")
@@ -13,6 +18,11 @@ defmodule Ark_Elixir.Signature do
 
     @doc """
     Get the fee for a signature.
+
+    ## Examples
+
+        iex> Ark_Elixir.Signature.get_signature_fee("validArkAddress")
+        ...
     """
     def get_signature_fee(address) do
         HTTPotion.get("https://api.arknode.net/api/signatures/fee", query: %{address: address})

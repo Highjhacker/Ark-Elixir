@@ -5,6 +5,11 @@ defmodule Ark_Elixir.MultiSignature do
 
     @doc """
     Get pending multi signature transactions.
+
+    ## Examples
+
+        iex> Ark_Elixir.MultiSignature.get_pending("validArkPublicKey")
+        ...
     """
     def get_pending(publicKey) do
         HTTPotion.get("https://api.arknode.net/api/multisignatures/pending", query: %{publicKey: publicKey})
@@ -13,6 +18,11 @@ defmodule Ark_Elixir.MultiSignature do
 
     @doc """
     Get a list of accounts.
+
+    ## Examples
+
+        iex> Ark_Elixir.MultiSignature.get_accounts("validArkPublicKey")
+        ...
     """
     def get_accounts(publicKey) do
         HTTPotion.get("https://api.arknode.net/api/multisignatures/accounts", query: %{publicKey: publicKey})

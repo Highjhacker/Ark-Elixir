@@ -5,6 +5,11 @@ defmodule Ark_Elixir.Transport do
 
     @doc """
     Get a list of peers.
+
+    ## Examples
+
+        iex> Ark_Elixir.Transport.get_peers
+        ...
     """
     def get_peers do
         HTTPotion.get("https://api.arknode.net/peer/list", query: %{nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"})
@@ -13,6 +18,11 @@ defmodule Ark_Elixir.Transport do
 
     @doc """
     Get a list of blocks by ids.
+
+    ## Examples
+
+        iex> Ark_Elixir.Transport.get_common_blocks("validListOfIds")
+        ...
     """
     def get_common_blocks(ids) do
         HTTPotion.get("https://api.arknode.net/peer/blocks/common", query: %{ids: ids})
@@ -21,6 +31,11 @@ defmodule Ark_Elixir.Transport do
 
     @doc """
     Get all blocks.
+
+    ## Examples
+
+        iex> Ark_Elixir.Transport.get_blocks("validArkAddress")
+        ...
     """
     def get_blocks(address) do
         HTTPotion.get("https://api.arknode.net/peer/blocks", query: %{address: address})
@@ -29,6 +44,11 @@ defmodule Ark_Elixir.Transport do
 
     @doc """
     Get a single block.
+
+    ## Examples
+
+        iex> Ark_Elixir.Transport.get_block("validArkAddress")
+        ...
     """
     def get_block(address) do
         HTTPotion.get("https://api.arknode.net/peer/block", query: %{address: address})
@@ -36,6 +56,12 @@ defmodule Ark_Elixir.Transport do
     end
 
     @doc """
+    Get a list of transactions.
+
+    ## Examples
+
+        iex> Ark_Elixir.Transport.get_transactions
+        ...
     """
     def get_transactions do
         HTTPotion.get("https://api.arknode.net/peer/transactions")
@@ -44,6 +70,11 @@ defmodule Ark_Elixir.Transport do
 
     @doc """
     Create a new transaction.
+
+    ## Examples
+
+        iex> Ark_Elixir.Transport.post_transaction
+        ...
     """
     def post_transaction do
         IO.puts "Not implemented !"
@@ -51,6 +82,11 @@ defmodule Ark_Elixir.Transport do
 
     @doc """
     Get a list of transactions by ids.
+
+    ## Examples
+
+        iex> Ark_Elixir.Transport.get_transactions_from_ids("validListOfIds")
+        ...
     """
     def get_transactions_from_ids(ids) do
         HTTPotion.get("https://api.arknode.net/peer/transactionsFromIds", query: %{ids: ids})
@@ -59,6 +95,10 @@ defmodule Ark_Elixir.Transport do
 
     @doc """
     Get the blockchain height.
+
+    ## Examples
+
+        iex> Ark_Elixir.Transport.get_height
     """
     def get_height do
         HTTPotion.get("https://api.arknode.net/peer/height")
@@ -67,6 +107,11 @@ defmodule Ark_Elixir.Transport do
 
     @doc """
     Get the blockchain status.
+
+    ## Examples
+
+        iex> Ark_Elixir.Transport.get_status
+        ...
     """
     def get_status do
         HTTPotion.get("https://api.arknode.net/peer/status")

@@ -5,6 +5,11 @@ defmodule Ark_Elixir.Peer do
 
     @doc """
     Get a single peer.
+
+    ## Examples
+
+        iex> Ark_Elixir.Peer.get_peer("ipAddress", "port")
+        ...
     """
     def get_peer(ip, port) do
         HTTPotion.get("https://api.arknode.net/api/peers/get", query: %{ip: ip, port: port})
@@ -13,6 +18,11 @@ defmodule Ark_Elixir.Peer do
 
     @doc """
     Get all peers.
+
+    ## Examples
+
+        iex> Ark_Elixir.Peer.get_peers
+        ...
     """
     def get_peers do
         # port, state, os, version, orderBy, limit, offset
@@ -22,6 +32,11 @@ defmodule Ark_Elixir.Peer do
 
     @doc """
     Get the peer version.
+
+    ## Examples
+
+        iex> Ark_Elixir.Peer.get_peer_version
+        ...
     """
     def get_peer_version do
         HTTPotion.get("https://api.arknode.net/api/peers/version")

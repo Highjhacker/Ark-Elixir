@@ -5,6 +5,11 @@ defmodule Ark_Elixir.Loader do
 
     @doc """
     Get the blockchain status.
+
+    ## Examples
+
+        iex> Ark_Elixir.Loader.get_status
+        ...
     """
     def get_status do
         HTTPotion.get("https://api.arknode.net/api/loader/status")
@@ -13,6 +18,11 @@ defmodule Ark_Elixir.Loader do
 
     @doc """
     Get the synchronisation status of the client.
+
+    ## Examples
+
+        iex> Ark_Elixir.Loader.get_sync
+        ...
     """
     def get_sync do
         HTTPotion.get("https://api.arknode.net/api/loader/status/sync")
@@ -21,6 +31,11 @@ defmodule Ark_Elixir.Loader do
 
     @doc """
     Auto-configure the client loader.
+
+    ## Examples
+
+        iex> Ark_Elixir.Loader.autoconfigure
+        ...
     """
     def autoconfigure do
         HTTPotion.get("https://api.arknode.net/api/loader/autoconfigure")

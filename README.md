@@ -105,7 +105,7 @@ iex> Ark_Elixir.Transaction.get_unconfirmed_transactions
 - [ ] Unit testing.
 - [ ] Better documentation.
 - [ ] Handle optionals parameters in the http requests.
-- ...
+- [ ] ...
 
 
 ## License
