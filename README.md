@@ -14,12 +14,16 @@ The package can be installed by adding `ark_elixir` to your list of dependencies
 ```elixir
 def deps do
   [
-    {:ark_elixir, "~> 0.1.0"}
+    {:ark_elixir, "~> 0.1.1"}
   ]
 end
 ```
 
 Full documentation docs can be found at [https://hexdocs.pm/ark_elixir](https://hexdocs.pm/ark_elixir/Ark_Elixir.html).
+
+## Application Example
+
+[Ark-Elixir-Example](https://github.com/Highjhacker/Ark-Elixir-Example)
 
 ## Usage
 
