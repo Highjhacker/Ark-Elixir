@@ -144,6 +144,7 @@ iex> Ark_Elixir.Transport_get_status
 - [ ] Unit testing.
 - [x] Better documentation.
 - [ ] Handle optionals parameters in the http requests.
+- [ ] Example app in Erlang
 - [ ] ...
 
 ## Authors
