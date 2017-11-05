@@ -1,3 +1,5 @@
+![alt-text](https://files.slack.com/files-pri/T2AC8N7RQ-F7V5PGK0A/banner_____elixir_-_w.png)
+
 # Ark_Elixir
 
 Ark API Wrapper in Elixir.
