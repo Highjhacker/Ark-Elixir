@@ -1,4 +1,4 @@
-![alt-text](https://files.slack.com/files-pri/T2AC8N7RQ-F7V5PGK0A/banner_____elixir_-_w.png)
+![alt-text](https://scontent.fbru2-1.fna.fbcdn.net/v/t35.0-12/23269860_10212735403773069_705991494_o.png?oh=93232fd3932bf4440e3b271a63de4dc5&oe=5A011D32)
 
 # Ark_Elixir
 
