@@ -140,7 +140,7 @@ iex> Ark_Elixir.Transport_get_status
 - [x] Add the parameters nethash, version and port to ALL of the requests.
 	- [ ] Currently the parameters nethash version and port are passed, but it should be more clear than that,   worth looking at metaprogramming & macros or something like that.
 - [ ] Unit testing.
-- [ ] Better documentation.
+- [x] Better documentation.
 - [ ] Handle optionals parameters in the http requests.
 - [ ] ...
 
