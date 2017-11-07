@@ -241,5 +241,28 @@ defmodule Ark_ElixirTest do
 
 
     # TRANSACTION
+    test "transaction get transaction from id" do
+        req = Ark_Elixir.Transaction.get_transaction("a38dc6b9e6679be706d5b39eef7dd0a7a10011e63da7623082106d90834e23e1")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "transaction get transactions" do
+        req = Ark_Elixir.Transaction.get_transactions
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "transaction get unconfirmed transaction from id" do
+        req = Ark_Elixir.Transaction.get_unconfirmed_transaction("a38dc6b9e6679be706d5b39eef7dd0a7a10011e63da7623082106d90834e23e1")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "transaction get unconfirmed transactions" do
+        req = Ark_Elixir.Transaction.get_unconfirmed_transactions
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
     # / TRANSACTION
 end
