@@ -1,5 +1,8 @@
 ![alt-text](https://scontent.fbru2-1.fna.fbcdn.net/v/t35.0-12/23269860_10212735403773069_705991494_o.png?oh=93232fd3932bf4440e3b271a63de4dc5&oe=5A011D32)
 
+[![HitCount](http://hits.dwyl.io/Highjhacker/Ark-Elixir.svg)](http://hits.dwyl.io/Highjhacker/Ark-Elixir)
+
+
 # Ark_Elixir
 
 Ark API Wrapper in Elixir.

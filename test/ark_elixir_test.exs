@@ -111,6 +111,68 @@ defmodule Ark_ElixirTest do
     # / BLOCKS
 
 
+    # DELEGATE
+    test "delegate get delegates count" do
+        req = Ark_Elixir.Delegate.get_delegates_count("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get search delegate" do
+        req = Ark_Elixir.Delegate.search_delegates("dr")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get voters" do
+        req = Ark_Elixir.Delegate.get_voters("031641ff081b93279b669f7771b3fbe48ade13eadb6d5fd85bdd025655e349f008")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get delegate by username" do
+        req = Ark_Elixir.Delegate.get_delegate("jarunik")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get delegate by publickey" do
+        req = Ark_Elixir.Delegate.get_delegate("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get delegates" do
+        req = Ark_Elixir.Delegate.get_delegates
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get delegate fee" do
+        req = Ark_Elixir.Delegate.get_delegate_fee("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get forged by account" do
+        req = Ark_Elixir.Delegate.get_forged_by_account("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get next forgers" do
+        req = Ark_Elixir.Delegate.get_next_forgers("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+
+
+
+
+    # / DELEGATE
+
+
     # LOADER
     test "loader get status" do
       req = Ark_Elixir.Loader.get_status()
