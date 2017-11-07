@@ -256,7 +256,7 @@ defmodule Ark_ElixirTest do
     test "transaction get unconfirmed transaction from id" do
         req = Ark_Elixir.Transaction.get_unconfirmed_transaction("a38dc6b9e6679be706d5b39eef7dd0a7a10011e63da7623082106d90834e23e1")
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
-        assert elem(success, 1) == true
+        assert elem(success, 1) == false
     end
 
     test "transaction get unconfirmed transactions" do
@@ -265,4 +265,60 @@ defmodule Ark_ElixirTest do
         assert elem(success, 1) == true
     end
     # / TRANSACTION
+
+
+    # TRANSPORT
+    test "transport get peers" do
+        req = Ark_Elixir.Transport.get_peers
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "transport get blocks by a list of ids" do
+        req = Ark_Elixir.Transport.get_common_blocks("5807533976636630922, 7191952529633383827")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "transport get blocks" do
+        req = Ark_Elixir.Transport.get_blocks("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    # The function doesn't work cause (I think) the endpoint doesn't work
+    #test "transport get block" do
+    #    req = Ark_Elixir.Transport.get_block("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ")
+    #    success =  Enum.find(req, fn {key, _} -> key == "success" end)
+    #    assert elem(success, 1) == true
+    #end
+
+    test "transport get transactions" do
+        req = Ark_Elixir.Transport.get_transactions
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    #test "transport post transaction" do
+    #    IO.puts "Not implemented"
+    #end
+
+    test "transport get transactions from ids" do
+        req = Ark_Elixir.Transport.get_transactions_from_ids("e9f1ff96ccaf9ebcadb0e1c0827c606a71a88c258c6a3ec1a880be000996dd25")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "transport get height" do
+        req = Ark_Elixir.Transport.get_height
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "transport get status" do
+        req = Ark_Elixir.Transport.get_status
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+    # / TRANSPORT
 end
