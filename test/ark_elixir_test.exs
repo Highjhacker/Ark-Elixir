@@ -136,11 +136,11 @@ defmodule Ark_ElixirTest do
         assert elem(success, 1) == true
     end
 
-    test "delegate get delegate by publickey" do
-        req = Ark_Elixir.Delegate.get_delegate("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
-        success =  Enum.find(req, fn {key, _} -> key == "success" end)
-        assert elem(success, 1) == true
-    end
+    #test "delegate get delegate by publickey" do
+    #    req = Ark_Elixir.Delegate.get_delegate("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
+    #    success =  Enum.find(req, fn {key, _} -> key == "success" end)
+    #    assert elem(success, 1) == true
+    #end
 
     test "delegate get delegates" do
         req = Ark_Elixir.Delegate.get_delegates
@@ -165,11 +165,6 @@ defmodule Ark_ElixirTest do
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
     end
-
-
-
-
-
     # / DELEGATE
 
 
@@ -192,4 +187,59 @@ defmodule Ark_ElixirTest do
       assert elem(success, 1) == true
     end
     # / LOADER
+
+
+    # MULTISIGNATURE
+    test "multisignature get pending" do
+        req = Ark_Elixir.MultiSignature.get_pending("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "multisignature get accounts" do
+        req = Ark_Elixir.MultiSignature.get_pending("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+    # / MULTISIGNATURE
+
+
+    # PEER
+    test "peer get peer" do
+        req = Ark_Elixir.Peer.get_peer("45.76.30.14", 4001)
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "peer get peers" do
+        req = Ark_Elixir.Peer.get_peers
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "peer get peer version" do
+        req = Ark_Elixir.Peer.get_peer_version
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+    # / PEER
+
+
+    # SIGNATURE
+    test "signature get signature fee" do
+        req = Ark_Elixir.Signature.get_signature_fee
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "signature get signature fee from address" do
+        req = Ark_Elixir.Signature.get_signature_fee("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+    # / SIGNATURE
+
+
+    # TRANSACTION
+    # / TRANSACTION
 end
