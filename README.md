@@ -147,7 +147,9 @@ iex> Ark_Elixir.Transport_get_status
 - [ ] Unit testing.
 - [x] Better documentation.
 - [ ] Handle optionals parameters in the http requests.
-- [ ] Example app in Erlang
+- [ ] Example app in Erlang.
+- [ ] Setup Travis.
+- [ ] Setup [Code Coverage](https://github.com/dwyl/repo-badges).
 - [ ] ...
 
 ## Authors
