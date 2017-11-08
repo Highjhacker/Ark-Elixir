@@ -18,7 +18,7 @@ The package can be installed by adding `ark_elixir` to your list of dependencies
 ```elixir
 def deps do
   [
-    {:ark_elixir, "~> 0.1.1"}
+    {:ark_elixir, "~> 0.1.2"}
   ]
 end
 ```
