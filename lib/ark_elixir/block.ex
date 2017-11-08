@@ -22,13 +22,15 @@ defmodule Ark_Elixir.Block do
         "totalForged" => "700000000", "version" => 0}, "success" => true}
     """
     def get_block(id) do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/get", query: %{id: id})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/get", [id: id])
     end
 
 
     @doc """
     Get all blocks.
+
+    Available parameters : limit, orderBy, offset, generatorPublicKey, totalAmount,
+    totalFee, reward, previousBlock, height
 
     ## Examples
 
@@ -46,11 +48,12 @@ defmodule Ark_Elixir.Block do
          ...
          "success" => true}
 
+         iex> Ark_Elixir.Block.get_blocks([limit: 2, orderBy: "timestamp"])
+         ...
+
     """
-    def get_blocks do
-        # limit, orderBy, offset, generatorPublicKey, totalAmount, totalFee, reward, previousBlock, height
-        request = HTTPotion.get("https://api.arknode.net/api/blocks")
-        Poison.Parser.parse!(request.body)
+    def get_blocks(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks", opts)
     end
 
 
@@ -63,8 +66,7 @@ defmodule Ark_Elixir.Block do
         %{"epoch" => "2017-03-21T13:00:00.000Z", "success" => true}
     """
     def get_epoch do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/getEpoch")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/getEpoch")
     end
 
 
@@ -77,8 +79,7 @@ defmodule Ark_Elixir.Block do
         %{"height" => 2444130, "id" => "522159878673007074", "success" => true}
     """
     def get_height do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/getHeight")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/getHeight")
     end
 
 
@@ -92,8 +93,7 @@ defmodule Ark_Elixir.Block do
         "success" => true}
     """
     def get_nethash do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/getNethash")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/getNethash")
     end
 
 
@@ -106,8 +106,7 @@ defmodule Ark_Elixir.Block do
         %{"fee" => 10000000, "success" => true}
     """
     def get_fee do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/getFee")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/getFee")
     end
 
 
@@ -122,8 +121,7 @@ defmodule Ark_Elixir.Block do
         "success" => true}
     """
     def get_fees do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/getFees")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/getFees")
     end
 
 
@@ -136,8 +134,7 @@ defmodule Ark_Elixir.Block do
         %{"milestone" => 0, "success" => true}
     """
     def get_milestone do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/getMilestone")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/getMilestone")
     end
 
 
@@ -150,8 +147,7 @@ defmodule Ark_Elixir.Block do
         %{"reward" => 200000000, "success" => true}
     """
     def get_reward do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/getReward")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/getReward")
     end
 
 
@@ -164,8 +160,7 @@ defmodule Ark_Elixir.Block do
         %{"success" => true, "supply" => 12988828200000000}
     """
     def get_supply do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/getSupply")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/getSupply")
     end
 
 
@@ -181,7 +176,6 @@ defmodule Ark_Elixir.Block do
         "reward" => 200000000, "success" => true, "supply" => 12988828600000000}
     """
     def get_status do
-        request = HTTPotion.get("https://api.arknode.net/api/blocks/getStatus")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/blocks/getStatus")
     end
 end

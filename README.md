@@ -2,6 +2,8 @@
 
 [![HitCount](http://hits.dwyl.io/Highjhacker/Ark-Elixir.svg)](http://hits.dwyl.io/Highjhacker/Ark-Elixir) [![Build Status](https://travis-ci.org/Highjhacker/Ark-Elixir.svg?branch=master)](https://travis-ci.org/Highjhacker/Ark-Elixir)
 
+ [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 
 # Ark_Elixir
 
@@ -63,7 +65,7 @@ iex> Ark_Elixir.Block.get_status
 ### Delegate
 
 ```elixir
-iex> Ark_Elixir.Delegate.search_delegates("dr")
+iex> Ark_Elixir.Delegate.search_delegates([q: "dr", limit: 2])
 
 %{"delegates" => [%{"address" => "ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9",
      "missedblocks" => 185, "producedblocks" => 27885,
@@ -72,15 +74,7 @@ iex> Ark_Elixir.Delegate.search_delegates("dr")
    %{"address" => "AGzLMjoUiLbccC4YpaDsMRwHaoUwCoorQG", "missedblocks" => 0,
      "producedblocks" => 0,
      "publicKey" => "038dfc041c7e609f254b2cf38de4b55e02dff9e743497f5cf6b67d49d8e44978ce",
-     "username" => "drusilla", "vote" => "0"},
-   %{"address" => "AUf8qWdgywo9c8P5oD48bz3Dv7ZK5K2giX", "missedblocks" => 28,
-     "producedblocks" => 38929,
-     "publicKey" => "03fe97236cc043ebb977c9ba79eee808da0615d85681185e997592347846444c61",
-     "username" => "gr33ndrag0n", "vote" => "3033651019152"},
-   %{"address" => "AMyGKY2TdTujzzBiPvP3C27twAFy37SdqF", "missedblocks" => 5,
-     "producedblocks" => 292,
-     "publicKey" => "03c29c149ca840d5717f8bf0d606dcdf007ef88b9fb2ebbfd57e9cee7845066e8c",
-     "username" => "videodrome", "vote" => "3334733141"}], "success" => true}
+     "username" => "drusilla", "vote" => "0"}], "success" => true}
 ```
 
 ### Loader
@@ -143,12 +137,12 @@ iex> Ark_Elixir.Transport_get_status
 ## TODOS
 
 - [x] Add the parameters nethash, version and port to ALL of the requests.
-	- [ ] Currently the parameters nethash version and port are passed, but it should be more clear than that,   worth looking at metaprogramming & macros or something like that.
-- [ ] Unit testing.
+- [x] Unit testing.
+    - [ ] Few tests are missing.
 - [x] Better documentation.
-- [ ] Handle optionals parameters in the http requests.
+- [x] Handle optionals parameters in the http requests.
 - [ ] Example app in Erlang.
-- [ ] Setup Travis.
+- [x] Setup Travis.
 - [ ] Setup [Code Coverage](https://github.com/dwyl/repo-badges).
 - [ ] ...
 

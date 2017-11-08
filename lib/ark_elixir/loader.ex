@@ -12,8 +12,7 @@ defmodule Ark_Elixir.Loader do
         %{"blocksCount" => 0, "loaded" => false, "now" => 2286032, "success" => true}
     """
     def get_status do
-        request = HTTPotion.get("https://api.arknode.net/api/loader/status")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/loader/status")
     end
 
 
@@ -27,8 +26,7 @@ defmodule Ark_Elixir.Loader do
         "success" => true, "syncing" => false}
     """
     def get_sync do
-        request = HTTPotion.get("https://api.arknode.net/api/loader/status/sync")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/loader/status/sync")
     end
 
 
@@ -43,7 +41,6 @@ defmodule Ark_Elixir.Loader do
         "symbol" => "Ѧ", "token" => "ARK", "version" => 23}, "success" => true}
     """
     def autoconfigure do
-        request = HTTPotion.get("https://api.arknode.net/api/loader/autoconfigure")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/loader/autoconfigure")
     end
 end

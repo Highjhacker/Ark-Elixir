@@ -12,26 +12,29 @@ defmodule Ark_Elixir.Delegate do
         %{"count" => 581, "success" => true}
     """
     def get_delegates_count(address) do
-        request = HTTPotion.get("https://api.arknode.net/api/delegates/count", query: %{address: address})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/delegates/count", [address: address])
     end
 
 
     @doc """
     Search for specific delegates.
 
+    Available parameters : limit
+
     ## Examples
 
-        iex> Ark_Elixir.Delegate.search_delegates("dr10")
+        iex> Ark_Elixir.Delegate.search_delegates([q: "dr", limit: 2])
         %{"delegates" => [%{"address" => "ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9",
-        "missedblocks" => 185, "producedblocks" => 28802,
-        "publicKey" => "031641ff081b93279b669f7771b3fbe48ade13eadb6d5fd85bdd025655e349f008",
-        "username" => "dr10", "vote" => "147374436754240"}], "success" => true}
+         "missedblocks" => 188, "producedblocks" => 29434,
+         "publicKey" => "031641ff081b93279b669f7771b3fbe48ade13eadb6d5fd85bdd025655e349f008",
+         "username" => "dr10", "vote" => "148061108825578"},
+       %{"address" => "AGzLMjoUiLbccC4YpaDsMRwHaoUwCoorQG", "missedblocks" => 0,
+         "producedblocks" => 0,
+         "publicKey" => "038dfc041c7e609f254b2cf38de4b55e02dff9e743497f5cf6b67d49d8e44978ce",
+         "username" => "drusilla", "vote" => "0"}], "success" => true}
     """
-    def search_delegates(query) do
-        # limit
-        request = HTTPotion.get("https://api.arknode.net/api/delegates/search", query: %{q: query})
-        Poison.Parser.parse!(request.body)
+    def search_delegates(query, opts \\ []) do
+        Ark_Elixir.Api.get("api/delegates/search", query)
     end
 
 
@@ -52,8 +55,7 @@ defmodule Ark_Elixir.Delegate do
         "success" => true}
     """
     def get_voters(publicKey) do
-        request = HTTPotion.get("https://api.arknode.net/api/delegates/voters", query: %{publicKey: publicKey})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/delegates/voters", [publicKey: publicKey])
     end
 
 
@@ -71,9 +73,7 @@ defmodule Ark_Elixir.Delegate do
         "success" => true}
     """
     def get_delegate(username) do
-        #publicKey, username
-        request = HTTPotion.get("https://api.arknode.net/api/delegates/get", query: %{username: username})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/delegates/get", [username: username])
     end
 
 
@@ -86,14 +86,14 @@ defmodule Ark_Elixir.Delegate do
         ...
     """
     def get_delegate(publicKey) do
-        #publicKey, username
-        request = HTTPotion.get("https://api.arknode.net/api/delegates/get", query: %{publicKey: publicKey})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/delegates/get", [publicKey: publicKey])
     end
 
 
     @doc """
     Get all delegates.
+
+    Available parameters : orderBy, limit, offset
 
     ## Examples
 
@@ -109,11 +109,12 @@ defmodule Ark_Elixir.Delegate do
          "rate" => 2, "username" => "boxpool", "vote" => "159198762918307"},
          ...
          ...], "success" => true, "totalCount" => 581}
+
+         iex> Ark_Elixir.Delegate.get_delegates([limit: 2, orderBy: "productivity"])
+         ...
     """
-    def get_delegates do
-        # orderBy, limit, offset
-        request = HTTPotion.get("https://api.arknode.net/api/delegates")
-        Poison.Parser.parse!(request.body)
+    def get_delegates(opts \\ []) do
+        Ark_Elixir.Api.get("api/delegates", opts)
     end
 
 
@@ -126,8 +127,7 @@ defmodule Ark_Elixir.Delegate do
         %{"fee" => 2500000000, "success" => true}
     """
     def get_delegate_fee(address) do
-        request = HTTPotion.get("https://api.arknode.net/api/delegates/fee", query: %{address: address})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/delegates/fee", [address: address])
     end
 
 
@@ -141,8 +141,7 @@ defmodule Ark_Elixir.Delegate do
         "rewards" => "7647600000000", "success" => true}
     """
     def get_forged_by_account(generatorPublicKey) do
-        request = HTTPotion.get("https://api.arknode.net/api/delegates/forging/getForgedByAccount", query: %{generatorPublicKey: generatorPublicKey})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/delegates/forging/getForgedByAccount", [generatorPublicKey: generatorPublicKey])
     end
 
 
@@ -166,7 +165,6 @@ defmodule Ark_Elixir.Delegate do
         success" => true}
     """
     def get_next_forgers(address) do
-        request = HTTPotion.get("https://api.arknode.net/api/delegates/getNextForgers", query: %{address: address})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/delegates/getNextForgers", [address: address])
     end
 end

@@ -16,9 +16,7 @@ defmodule Ark_Elixir.Transport do
         "success" => true}
     """
     def get_peers do
-        request = HTTPotion.get("https://api.arknode.net/peer/list",
-            headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("peer/list")
     end
 
 
@@ -33,9 +31,7 @@ defmodule Ark_Elixir.Transport do
         "lastBlockHeight" => 2444867, "success" => true}
     """
     def get_common_blocks(ids) do
-        request = HTTPotion.get("https://api.arknode.net/peer/blocks/common", query: %{ids: ids},
-            headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("peer/blocks/common", [ids: ids])
     end
 
 
@@ -48,24 +44,22 @@ defmodule Ark_Elixir.Transport do
         %{"blocks" => [], "success" => true}
     """
     def get_blocks(address) do
-        request = HTTPotion.get("https://api.arknode.net/peer/blocks", query: %{address: address},
-            headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("peer/blocks", [address: address])
     end
 
 
     @doc """
     Get a single block.
 
+    Note: Doesn't work, even the curl from the official API documentation doesn't work.
+
     ## Examples
 
-        iex> Ark_Elixir.Transport.get_block("validArkAddress")
+        iex> Ark_Elixir.Transport.get_block("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ")
         ...
     """
     def get_block(address) do
-        request = HTTPotion.get("https://api.arknode.net/peer/block", query: %{address: address},
-            headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("peer/block", [address: address])
     end
 
 
@@ -78,9 +72,7 @@ defmodule Ark_Elixir.Transport do
         %{"success" => true, "transactions" => []}
     """
     def get_transactions do
-        request = HTTPotion.get("https://api.arknode.net/peer/transactions",
-            headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("peer/transactions")
     end
 
 
@@ -115,9 +107,7 @@ defmodule Ark_Elixir.Transport do
         "timestamp" => 19737857, "type" => 0}]}
     """
     def get_transactions_from_ids(ids) do
-        request = HTTPotion.get("https://api.arknode.net/peer/transactionsFromIds", query: %{ids: ids},
-            headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("peer/transactionsFromIds", [ids: ids])
     end
 
 
@@ -137,9 +127,7 @@ defmodule Ark_Elixir.Transport do
         "totalFee" => 0, "version" => 0}, "height" => 2444912, "success" => true}
     """
     def get_height do
-        request = HTTPotion.get("https://api.arknode.net/peer/height",
-            headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("peer/height")
     end
 
 
@@ -160,8 +148,6 @@ defmodule Ark_Elixir.Transport do
         "totalFee" => 0, "version" => 0}, "height" => 2444915, "success" => true}
     """
     def get_status do
-        request = HTTPotion.get("https://api.arknode.net/peer/status",
-            headers: [nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988", version: "1.0.1", port: "4001"])
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("peer/status")
     end
 end

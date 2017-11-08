@@ -12,8 +12,7 @@ defmodule Ark_Elixir.MultiSignature do
         %{"success" => true, "transactions" => []}
     """
     def get_pending(publicKey) do
-        request = HTTPotion.get("https://api.arknode.net/api/multisignatures/pending", query: %{publicKey: publicKey})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/multisignatures/pending", [publicKey: publicKey])
     end
 
 
@@ -26,7 +25,6 @@ defmodule Ark_Elixir.MultiSignature do
         ...
     """
     def get_accounts(publicKey) do
-        request = HTTPotion.get("https://api.arknode.net/api/multisignatures/accounts", query: %{publicKey: publicKey})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/multisignatures/accounts", [publicKey: publicKey])
     end
 end

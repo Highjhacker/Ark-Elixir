@@ -21,13 +21,15 @@ defmodule Ark_Elixir.Transaction do
         "timestamp" => 19468149, "type" => 0, "vendorField" => "turnip"}}
     """
     def get_transaction(id) do
-        request = HTTPotion.get("https://api.arknode.net/api/transactions/get", query: %{id: id})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/transactions/get", [id: id])
     end
 
 
     @doc """
     Get all transactions.
+
+    Available parameters : blockId, limit, type, orderBy, offset, senderPublicKey,
+    vendorField, ownerPublicKey, ownerADdress, senderId, recipientId, amount, fee
 
     ## Examples
 
@@ -44,11 +46,12 @@ defmodule Ark_Elixir.Transaction do
          "signature" => "304502210097ecee8578f4de4000b7ce9f14aa4d03c96c720525cc3ee159ec9407c55bc1fa0220086cca7dbab230d2e783dfbd46dc7f348df6f6ebde92eef0137a9e318dffc10e",
          "timestamp" => 10335623, "type" => 0},
          ...
+
+         iex> iex> Ark_Elixir.Transaction.get_transactions([limit: 2])
+         ...
     """
-    def get_transactions do
-        # blockId, limit, type, orderBy, offset, senderPublicKey, vendorField, ownerPublicKey, ownerADdress, senderId, recipientId, amount, fee
-        request = HTTPotion.get("https://api.arknode.net/api/transactions")
-        Poison.Parser.parse!(request.body)
+    def get_transactions(opts \\ []) do
+        Ark_Elixir.Api.get("api/transactions", opts)
     end
 
 
@@ -61,22 +64,25 @@ defmodule Ark_Elixir.Transaction do
         ...
     """
     def get_unconfirmed_transaction(id) do
-        request = HTTPotion.get("https://api.arknode.net/api/transactions/unconfirmed/get", query: %{id: id})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/transactions/unconfirmed/get", [id: id])
     end
 
 
     @doc """
     Get all unconfirmed transactions.
 
+    Available parameters : senderPublickKey, address
+
     ## Examples
 
         iex> Ark_Elixir.Transaction.get_unconfirmed_transactions
         %{"success" => true, "transactions" => []}
+
+        iex> Ark_Elixir.Transaction.get_unconfirmed_transactions([address: "validArkAddress"])
+        ...
     """
-    def get_unconfirmed_transactions do
+    def get_unconfirmed_transactions(opts \\ []) do
         # senderPublicKey, address
-        request = HTTPotion.get("https://api.arknode.net/api/transactions/unconfirmed")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/transactions/unconfirmed", opts)
     end
 end

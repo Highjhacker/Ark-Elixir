@@ -13,8 +13,7 @@ defmodule Ark_Elixir.Account do
           "unconfirmedBalance" => "272613067142"}
     """
     def get_balance(address) do
-        request = HTTPotion.get("https://api.arknode.net/api/accounts/getBalance", query: %{address: address})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/accounts/getBalance", [address: address])
     end
 
 
@@ -28,8 +27,7 @@ defmodule Ark_Elixir.Account do
           "success" => true}
     """
     def get_public_key(address) do
-        request = HTTPotion.get("https://api.arknode.net/api/accounts/getPublicKey", query: %{address: address})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/accounts/getPublickey", [address: address])
     end
 
 
@@ -42,8 +40,7 @@ defmodule Ark_Elixir.Account do
         %{"fee" => 2500000000, "success" => true}
     """
     def get_delegate_fee do
-        request = HTTPotion.get("https://api.arknode.net/api/accounts/delegates/fee")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/accounts/delegates/fee")
     end
 
 
@@ -60,10 +57,9 @@ defmodule Ark_Elixir.Account do
      "rate" => 9, "username" => "dr10", "vote" => "147374436754240"}],
      "success" => true}
     """
-    def get_delegates(address) do
+    def get_delegates(address, opts \\ []) do
         # orderBy, limit, offset
-        request = HTTPotion.get("https://api.arknode.net/api/accounts/delegates", query: %{address: address})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/accounts/delegates", [address: address])
     end
 
 
@@ -82,8 +78,7 @@ defmodule Ark_Elixir.Account do
         "success" => true}
     """
     def get_accounts(address) do
-        request = HTTPotion.get("https://api.arknode.net/api/accounts", query: %{address: address})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/accounts", [address: address])
     end
 
 
@@ -101,11 +96,12 @@ defmodule Ark_Elixir.Account do
          "publicKey" => "02ff171adaef486b7db9fc160b28433d20cf43163d56fd28fee72145f0d5219a4b"},
          ...
          "success" => true}
-    """
-    def get_top_accounts do
-        # limit, offset
-        request = HTTPotion.get("https://api.arknode.net/api/accounts/top")
-        Poison.Parser.parse!(request.body)
-    end
 
+         iex> Ark_Elixir.ACcount.get_top_accounts([limit: 10]) # Limit to 10 results
+         ...
+    """
+    def get_top_accounts(opts \\ []) do
+        # limit, offset
+        Ark_Elixir.Api.get("api/accounts/top", opts)
+    end
 end

@@ -12,8 +12,7 @@ defmodule Ark_Elixir.Signature do
         %{"fee" => 500000000, "success" => true}
     """
     def get_signature_fee do
-        request = HTTPotion.get("https://api.arknode.net/api/signatures/fee")
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/signatures/fee")
     end
 
 
@@ -26,7 +25,6 @@ defmodule Ark_Elixir.Signature do
         %{"fee" => 500000000, "success" => true}
     """
     def get_signature_fee(address) do
-        request = HTTPotion.get("https://api.arknode.net/api/signatures/fee", query: %{address: address})
-        Poison.Parser.parse!(request.body)
+        Ark_Elixir.Api.get("api/signatures/fee", [address: address])
     end
 end
