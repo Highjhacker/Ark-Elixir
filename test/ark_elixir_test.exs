@@ -136,11 +136,11 @@ defmodule Ark_ElixirTest do
         assert elem(success, 1) == true
     end
 
-    #test "delegate get delegate by publickey" do
-    #    req = Ark_Elixir.Delegate.get_delegate("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
-    #    success =  Enum.find(req, fn {key, _} -> key == "success" end)
-    #    assert elem(success, 1) == true
-    #end
+    test "delegate get delegate by publickey" do
+        req = Ark_Elixir.Delegate.get_delegate("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
 
     test "delegate get delegates" do
         req = Ark_Elixir.Delegate.get_delegates
