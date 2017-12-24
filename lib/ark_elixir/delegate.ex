@@ -33,7 +33,7 @@ defmodule Ark_Elixir.Delegate do
          "publicKey" => "038dfc041c7e609f254b2cf38de4b55e02dff9e743497f5cf6b67d49d8e44978ce",
          "username" => "drusilla", "vote" => "0"}], "success" => true}
     """
-    def search_delegates(query, opts \\ []) do
+    def search_delegates(query, _opts \\ []) do
         Ark_Elixir.Api.get("api/delegates/search", query)
     end
 
@@ -81,10 +81,11 @@ defmodule Ark_Elixir.Delegate do
         "success" => true}
     """
     def get_delegate(id) do
-      case String.length(id) do
-        66 -> Ark_Elixir.Api.get("api/delegates/get", [publicKey: id])
-        _ -> Ark_Elixir.Api.get("api/delegates/get", [username: id])
+      id_type = case String.length(id) do
+        66 -> :publicKey
+        _ -> :username
       end
+      Ark_Elixir.Api.get("api/delegates/get", [{id_type, id}])
     end
 
 
