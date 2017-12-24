@@ -60,7 +60,7 @@ defmodule Ark_Elixir.Delegate do
 
 
     @doc """
-    Get a single delegate.
+    Get a single delegate by name or public key.
 
     ## Examples
 
@@ -71,22 +71,20 @@ defmodule Ark_Elixir.Delegate do
         "publicKey" => "02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de",
         "rate" => 35, "username" => "jarunik", "vote" => "141330551085778"},
         "success" => true}
+
+        iex> Ark_Elixir.Delegate.get_delegate("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
+        %{"delegate" => %{"address" => "Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t",
+        "approval" => 1.18, "missedblocks" => 227, "producedblocks" => 48565,
+        "productivity" => 99.53,
+        "publicKey" => "02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de",
+        "rate" => 4, "username" => "jarunik", "vote" => "154019617402053"},
+        "success" => true}
     """
-    def get_delegate(username) do
-        Ark_Elixir.Api.get("api/delegates/get", [username: username])
-    end
-
-
-    @doc """
-    Get a single delegate.
-
-    ## Examples
-
-        iex> Ark_Elixir.Delegate.get_delegate("arkValidPublicKey")
-        ...
-    """
-    def get_delegate(publicKey) do
-        Ark_Elixir.Api.get("api/delegates/get", [publicKey: publicKey])
+    def get_delegate(id) do
+      case String.length(id) do
+        66 -> Ark_Elixir.Api.get("api/delegates/get", [publicKey: id])
+        _ -> Ark_Elixir.Api.get("api/delegates/get", [username: id])
+      end
     end
 
 
