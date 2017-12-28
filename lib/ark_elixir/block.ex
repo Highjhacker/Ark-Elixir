@@ -20,9 +20,13 @@ defmodule Ark_Elixir.Block do
         "reward" => 200000000, "timestamp" => 19174464,
         "totalAmount" => 15830360775, "totalFee" => 500000000,
         "totalForged" => "700000000", "version" => 0}, "success" => true}
+        ...
+
+        iex> Ark_Elixir.Block.get_block("570934191207974498", :dev)
+        iex> Ark_Elixir.Block.get_block("570934191207974498", "dev")
     """
-    def get_block(id) do
-        Ark_Elixir.Api.get("api/blocks/get", [id: id])
+    def get_block(id, opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/get", [id: id, network: opts])
     end
 
 
@@ -49,8 +53,9 @@ defmodule Ark_Elixir.Block do
          "success" => true}
 
          iex> Ark_Elixir.Block.get_blocks([limit: 2, orderBy: "timestamp"])
+         iex> Ark_Elixir.Block.get_blocks([limit: 2, network: "dev", orderBy: "timestamp"])
+         iex> Ark_Elixir.Block.get_blocks([limit: 2, orderBy: "timestamp", network: :dev])
          ...
-
     """
     def get_blocks(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks", opts)
@@ -64,9 +69,12 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_epoch
         %{"epoch" => "2017-03-21T13:00:00.000Z", "success" => true}
+
+        iex> Ark_Elixir.Block.get_epoch(:dev)
+        iex> Ark_Elixir.Block.get_epoch("dev")
     """
-    def get_epoch do
-        Ark_Elixir.Api.get("api/blocks/getEpoch")
+    def get_epoch(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/getEpoch", [network: opts])
     end
 
 
@@ -77,9 +85,12 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_height
         %{"height" => 2444130, "id" => "522159878673007074", "success" => true}
+
+        iex> Ark_Elixir.Block.get_height(:dev)
+        iex> Ark_Elixir.Block.get_height("dev")
     """
-    def get_height do
-        Ark_Elixir.Api.get("api/blocks/getHeight")
+    def get_height(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/getHeight", [network: opts])
     end
 
 
@@ -91,9 +102,12 @@ defmodule Ark_Elixir.Block do
         iex> Ark_Elixir.Block.get_nethash
         %{"nethash" => "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988",
         "success" => true}
+
+        iex> Ark_Elixir.Block.get_nethash(:dev)
+        iex> Ark_Elixir.Block.get_nethash("dev")
     """
-    def get_nethash do
-        Ark_Elixir.Api.get("api/blocks/getNethash")
+    def get_nethash(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/getNethash", [network: opts])
     end
 
 
@@ -104,9 +118,12 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_fee
         %{"fee" => 10000000, "success" => true}
+
+        iex> Ark_Elixir.Block.get_fee(:dev)
+        iex> Ark_Elixir.Block.get_fee("dev")
     """
-    def get_fee do
-        Ark_Elixir.Api.get("api/blocks/getFee")
+    def get_fee(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/getFee", [network: opts])
     end
 
 
@@ -119,9 +136,12 @@ defmodule Ark_Elixir.Block do
         %{"fees" => %{"delegate" => 2500000000, "multisignature" => 500000000,
         "secondsignature" => 500000000, "send" => 10000000, "vote" => 100000000},
         "success" => true}
+
+        iex> Ark_Elixir.Block.get_fees(:dev)
+        iex> Ark_Elixir.Block.get_fees("dev")
     """
-    def get_fees do
-        Ark_Elixir.Api.get("api/blocks/getFees")
+    def get_fees(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/getFees", [network: opts])
     end
 
 
@@ -132,9 +152,12 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_milestone
         %{"milestone" => 0, "success" => true}
+
+        iex> Ark_Elixir.Block.get_milestone(:dev)
+        iex> Ark_Elixir.Block.get_milestone("dev")
     """
-    def get_milestone do
-        Ark_Elixir.Api.get("api/blocks/getMilestone")
+    def get_milestone(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/getMilestone", [network: opts])
     end
 
 
@@ -145,9 +168,12 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_reward
         %{"reward" => 200000000, "success" => true}
+
+        iex> Ark_Elixir.Block.get_reward(:dev)
+        iex> Ark_Elixir.Block.get_reward("dev")
     """
-    def get_reward do
-        Ark_Elixir.Api.get("api/blocks/getReward")
+    def get_reward(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/getReward", [network: opts])
     end
 
 
@@ -158,9 +184,12 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_supply
         %{"success" => true, "supply" => 12988828200000000}
+
+        iex> Ark_Elixir.Block.get_supply(:dev)
+        iex> Ark_Elixir.Block.get_supply("dev")
     """
-    def get_supply do
-        Ark_Elixir.Api.get("api/blocks/getSupply")
+    def get_supply(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/getSupply", [network: opts])
     end
 
 
@@ -174,8 +203,11 @@ defmodule Ark_Elixir.Block do
         "milestone" => 0,
         "nethash" => "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988",
         "reward" => 200000000, "success" => true, "supply" => 12988828600000000}
+
+        iex> Ark_Elixir.Block.get_status(:dev)
+        iex> Ark_Elixir.Block.get_status("dev")
     """
-    def get_status do
-        Ark_Elixir.Api.get("api/blocks/getStatus")
+    def get_status(opts \\ []) do
+        Ark_Elixir.Api.get("api/blocks/getStatus", [network: opts])
     end
 end

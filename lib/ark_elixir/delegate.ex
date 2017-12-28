@@ -10,16 +10,19 @@ defmodule Ark_Elixir.Delegate do
 
         iex> Ark_Elixir.Delegate.get_delegates_count("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9")
         %{"count" => 581, "success" => true}
+
+        iex> Ark_Elixir.Delegate.get_delegates_count("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", :dev)
+        iex> Ark_Elixir.Delegate.get_delegates_count("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", "dev")
     """
-    def get_delegates_count(address) do
-        Ark_Elixir.Api.get("api/delegates/count", [address: address])
+    def get_delegates_count(address, opts \\ []) do
+        Ark_Elixir.Api.get("api/delegates/count", [address: address, network: opts])
     end
 
 
     @doc """
     Search for specific delegates.
 
-    Available parameters : limit
+    Optional parameters : limit
 
     ## Examples
 
@@ -32,8 +35,11 @@ defmodule Ark_Elixir.Delegate do
          "producedblocks" => 0,
          "publicKey" => "038dfc041c7e609f254b2cf38de4b55e02dff9e743497f5cf6b67d49d8e44978ce",
          "username" => "drusilla", "vote" => "0"}], "success" => true}
+
+        iex> Ark_Elixir.Delegate.search_delegates([q: "dr", limit: 2, network: :dev])
+        iex> Ark_Elixir.Delegate.search_delegates([q: "dr", limit: 2, network: "dev"])
     """
-    def search_delegates(query, _opts \\ []) do
+    def search_delegates(query) do
         Ark_Elixir.Api.get("api/delegates/search", query)
     end
 
@@ -53,9 +59,12 @@ defmodule Ark_Elixir.Delegate do
         "username" => nil},
         ...
         "success" => true}
+
+        iex> Ark_Elixir.Delegate.get_voters("031641ff081b93279b669f7771b3fbe48ade13eadb6d5fd85bdd025655e349f008", :dev)
+        iex> Ark_Elixir.Delegate.get_voters("031641ff081b93279b669f7771b3fbe48ade13eadb6d5fd85bdd025655e349f008", "dev")
     """
-    def get_voters(publicKey) do
-        Ark_Elixir.Api.get("api/delegates/voters", [publicKey: publicKey])
+    def get_voters(publicKey, opts \\ []) do
+        Ark_Elixir.Api.get("api/delegates/voters", [publicKey: publicKey, network: opts])
     end
 
 
@@ -72,6 +81,9 @@ defmodule Ark_Elixir.Delegate do
         "rate" => 35, "username" => "jarunik", "vote" => "141330551085778"},
         "success" => true}
 
+        iex> Ark_Elixir.Delegate.get_delegate("jarunik", :dev)
+        iex> Ark_Elixir.Delegate.get_delegate("jarunik", "dev")
+
         iex> Ark_Elixir.Delegate.get_delegate("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
         %{"delegate" => %{"address" => "Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t",
         "approval" => 1.18, "missedblocks" => 227, "producedblocks" => 48565,
@@ -79,20 +91,23 @@ defmodule Ark_Elixir.Delegate do
         "publicKey" => "02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de",
         "rate" => 4, "username" => "jarunik", "vote" => "154019617402053"},
         "success" => true}
+
+        iex> Ark_Elixir.Delegate.get_delegate("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de", :dev)
+        iex> Ark_Elixir.Delegate.get_delegate("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de", "dev")
     """
-    def get_delegate(id) do
+    def get_delegate(id, opts \\ []) do
       id_type = case String.length(id) do
         66 -> :publicKey
         _ -> :username
       end
-      Ark_Elixir.Api.get("api/delegates/get", [{id_type, id}])
+      Ark_Elixir.Api.get("api/delegates/get", [{id_type, id}, network: opts])
     end
 
 
     @doc """
     Get all delegates.
 
-    Available parameters : orderBy, limit, offset
+    Optional parameters : orderBy, limit, offset
 
     ## Examples
 
@@ -124,9 +139,12 @@ defmodule Ark_Elixir.Delegate do
 
         iex> Ark_Elixir.Delegate.get_delegate_fee("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t")
         %{"fee" => 2500000000, "success" => true}
+
+        iex> Ark_Elixir.Delegate.get_delegate_fee("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t", :dev)
+        iex> Ark_Elixir.Delegate.get_delegate_fee("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t", "dev")
     """
-    def get_delegate_fee(address) do
-        Ark_Elixir.Api.get("api/delegates/fee", [address: address])
+    def get_delegate_fee(address, opts \\ []) do
+        Ark_Elixir.Api.get("api/delegates/fee", [address: address, network: opts])
     end
 
 
@@ -138,9 +156,12 @@ defmodule Ark_Elixir.Delegate do
         iex> Ark_Elixir.Delegate.get_forged_by_account("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de")
         %{"fees" => "110200000000", "forged" => "7757800000000",
         "rewards" => "7647600000000", "success" => true}
+
+        iex> Ark_Elixir.Delegate.get_forged_by_account("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de", :dev)
+        iex> Ark_Elixir.Delegate.get_forged_by_account("02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de", "dev")
     """
-    def get_forged_by_account(generatorPublicKey) do
-        Ark_Elixir.Api.get("api/delegates/forging/getForgedByAccount", [generatorPublicKey: generatorPublicKey])
+    def get_forged_by_account(generatorPublicKey, opts \\ []) do
+        Ark_Elixir.Api.get("api/delegates/forging/getForgedByAccount", [generatorPublicKey: generatorPublicKey, network: opts])
     end
 
 
@@ -162,8 +183,11 @@ defmodule Ark_Elixir.Delegate do
         "02b1d2ea7c265db66087789f571fceb8cc2b2d89e296ad966efb8ed51855f2ae0b",
         "035a0302ddd571bb821f6b069450814cb29fc927f14f146491fd5c9b3ab57d8ca8"],
         success" => true}
+
+        iex> Ark_Elixir.Delegate.get_next_forgers("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t", :dev)
+        iex> Ark_Elixir.Delegate.get_next_forgers("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t", "dev")
     """
-    def get_next_forgers(address) do
-        Ark_Elixir.Api.get("api/delegates/getNextForgers", [address: address])
+    def get_next_forgers(address, opts \\ []) do
+        Ark_Elixir.Api.get("api/delegates/getNextForgers", [address: address, network: opts])
     end
 end

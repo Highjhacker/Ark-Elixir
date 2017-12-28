@@ -12,14 +12,21 @@ defmodule Ark_Elixir.Peer do
         %{"peer" => %{"delay" => 162, "errors" => 0, "height" => 2444791,
         "ip" => "45.76.30.14", "os" => "linux4.4.0-96-generic", "port" => 4001,
         "status" => "OK", "version" => "1.0.1"}, "success" => true}
+
+        iex> Ark_Elixir.Peer.get_peer("45.76.30.14", 4001, :dev)
+        iex> Ark_Elixir.Peer.get_peer("45.76.30.14", 4001, "dev")
     """
-    def get_peer(ip, port) do
-        Ark_Elixir.Api.get("api/peers/get", [ip: ip, port: port])
+    def get_peer(ip, port, opts \\ []) do
+        Ark_Elixir.Api.get("api/peers/get", [ip: ip, port: port, network: opts])
     end
 
 
     @doc """
     Get all peers.
+
+    The optional parameters doesn't works ATM, even on the Swagger API.
+
+    Optional parameters : port, state, os, version, orderBy, limit, offset
 
     ## Examples
 
@@ -31,9 +38,12 @@ defmodule Ark_Elixir.Peer do
         "os" => "linux4.4.0-97-generic", "port" => 4001, "status" => "OK",
         "version" => "1.0.1"},
         "success" => true}
+
+        iex> Ark_Elixir.Peer.get_peers(:dev)
+        iex> Ark_Elixir.Peer.get_peers("dev")
     """
-    def get_peers do
-        Ark_Elixir.Api.get("api/peers")
+    def get_peers(opts \\ []) do
+        Ark_Elixir.Api.get("api/peers", [network: opts])
     end
 
 
@@ -44,8 +54,11 @@ defmodule Ark_Elixir.Peer do
 
         iex> Ark_Elixir.Peer.get_peer_version
         %{"build" => "", "success" => true, "version" => "1.0.1"}
+
+        iex> Ark_Elixir.Peer.get_peer_version(:dev)
+        iex> Ark_Elixir.Peer.get_peer_version("dev")
     """
-    def get_peer_version do
-        Ark_Elixir.Api.get("api/peers/version")
+    def get_peer_version(opts \\ []) do
+        Ark_Elixir.Api.get("api/peers/version", [network: opts])
     end
 end
