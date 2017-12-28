@@ -13,7 +13,6 @@ defmodule Ark_Elixir.Account do
           "unconfirmedBalance" => "272613067142"}
 
         iex> Ark_Elixir.Account.get_balance("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", :dev)
-        iex> Ark_Elixir.Account.get_balance("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", "dev")
     """
     def get_balance(address, opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/getBalance", [address: address, network: opts])
@@ -30,7 +29,6 @@ defmodule Ark_Elixir.Account do
           "success" => true}
 
         iex> Ark_Elixir.Account.get_public_key("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", :dev)
-        iex> Ark_Elixir.Account.get_public_key("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", "dev")
     """
     def get_public_key(address, opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/getPublickey", [address: address, network: opts])
@@ -46,7 +44,6 @@ defmodule Ark_Elixir.Account do
         %{"fee" => 2500000000, "success" => true}
 
         iex> Ark_Elixir.Account.get_delegate_fee(:dev)
-        iex> Ark_Elixir.Account.get_delegate_fee("dev")
     """
     def get_delegate_fee(opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/delegates/fee", [network: opts])
@@ -68,7 +65,6 @@ defmodule Ark_Elixir.Account do
      "rate" => 9, "username" => "dr10", "vote" => "147374436754240"}],
      "success" => true}
 
-    iex> Ark_Elixir.Account.get_delegates("AccacXRhyBJSZ3VjQWvRuzsubes58A5gmA", [network: "dev"])
     iex> Ark_Elixir.Account.get_delegates("AccacXRhyBJSZ3VjQWvRuzsubes58A5gmA", [network: :dev])
     """
     def get_delegates(address, opts \\ []) do
@@ -91,7 +87,6 @@ defmodule Ark_Elixir.Account do
         "success" => true}
 
         iex> Ark_Elixir.Account.get_accounts("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", :dev)
-        iex> Ark_Elixir.Account.get_accounts("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", "dev")
     """
     def get_accounts(address, opts \\ []) do
         Ark_Elixir.Api.get("api/accounts", [address: address, network: opts])
@@ -117,7 +112,6 @@ defmodule Ark_Elixir.Account do
 
          iex> Ark_Elixir.ACcount.get_top_accounts([limit: 10]) # Limit to 10 results
          iex> Ark_Elixir.ACcount.get_top_accounts([limit: 10, network: :dev])
-         iex> Ark_Elixir.ACcount.get_top_accounts([limit: 10, network: "dev"])
     """
     def get_top_accounts(opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/top", opts)

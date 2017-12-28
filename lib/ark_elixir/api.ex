@@ -14,19 +14,16 @@ defmodule Ark_Elixir.Api do
 
       iex> Ark_Elixir.Api.get("api/blocks") # Query on the main net
       iex> Ark_Elixir.Api.get("api/blocks", [limit: 2]) # Query on the main net
-      iex> Ark_Elixir.Api.get("api/blocks", [limit: 2, network: "dev"]) # Query on the dev net
-      iex> Ark_Elixir.Api.get("api/blocks", [network: "dev", limit: 2]) # In any order
-      iex> Ark_Elixir.Api.get("api/blocks", [network: "dev"]) # No query params, just the network and the whole response
-      iex> Ark_Elixir.Api.get("api/blocks", [network: "bar"]) # Incorrect network, switching on the main one
+      iex> Ark_Elixir.Api.get("api/blocks", [limit: 2, network: :dev]) # Query on the dev net
+      iex> Ark_Elixir.Api.get("api/blocks", [network: :dev, limit: 2]) # In any order
+      iex> Ark_Elixir.Api.get("api/blocks", [network: :dev]) # No query params, just the network and the whole response
+      iex> Ark_Elixir.Api.get("api/blocks", [network: :bar]) # Incorrect network, switching on the main one
       iex> Ark_Elixir.Api.get("api/blocks", [network: :dev]) # You can specify the network as an Atom
     """
     def get(endpoint, opts \\ []) do
       case opts[:network] do
-        "main" -> get_main(endpoint, opts)
         :main -> get_main(endpoint, opts)
-        "dev" -> get_dev(endpoint, opts)
         :dev -> get_dev(endpoint, opts)
-        "dark" -> get_dev(endpoint, opts)
         :dark -> get_dev(endpoint, opts)
         _ -> get_main(endpoint, opts)
       end

@@ -16,7 +16,6 @@ defmodule Ark_Elixir.Transport do
         "success" => true}
 
         iex> Ark_Elixir.Transport.get_peers(:dev)
-        iex> Ark_Elixir.Transport.get_peers("dev")
     """
     def get_peers(opts \\ []) do
         Ark_Elixir.Api.get("peer/list", [network: opts])
@@ -34,7 +33,6 @@ defmodule Ark_Elixir.Transport do
         "lastBlockHeight" => 2444867, "success" => true}
 
         iex> Ark_Elixir.Transport.get_common_blocks("5807533976636630922, 7191952529633383827", :dev)
-        iex> Ark_Elixir.Transport.get_common_blocks("5807533976636630922, 7191952529633383827", "dev")
     """
     def get_common_blocks(ids, opts \\ []) do
         Ark_Elixir.Api.get("peer/blocks/common", [ids: ids, network: opts])
@@ -48,6 +46,8 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_blocks("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ")
         %{"blocks" => [], "success" => true}
+
+        iex> Ark_Elixir.Transport.get_blocks("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ", :dev)
     """
     def get_blocks(address, opts \\ []) do
         Ark_Elixir.Api.get("peer/blocks", [address: address, network: opts])
@@ -64,7 +64,6 @@ defmodule Ark_Elixir.Transport do
         iex> Ark_Elixir.Transport.get_block("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ")
         ...
         iex> Ark_Elixir.Transport.get_block("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ", :dev)
-        iex> Ark_Elixir.Transport.get_block("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ", "dev")
     """
     def get_block(address, opts \\ []) do
         Ark_Elixir.Api.get("peer/block", [address: address, network: opts])
@@ -80,7 +79,6 @@ defmodule Ark_Elixir.Transport do
         %{"success" => true, "transactions" => []}
 
         iex> Ark_Elixir.Transport.get_transactions(:dev)
-        iex> Ark_Elixir.Transport.get_transactions("dev")
     """
     def get_transactions(opts \\ []) do
         Ark_Elixir.Api.get("peer/transactions", [network: opts])
@@ -118,7 +116,6 @@ defmodule Ark_Elixir.Transport do
         "timestamp" => 19737857, "type" => 0}]}
 
         iex> Ark_Elixir.Transport.get_transactions_from_ids("e9f1ff96ccaf9ebcadb0e1c0827c606a71a88c258c6a3ec1a880be000996dd25", :dev)
-        iex> Ark_Elixir.Transport.get_transactions_from_ids("e9f1ff96ccaf9ebcadb0e1c0827c606a71a88c258c6a3ec1a880be000996dd25", "dev")
     """
     def get_transactions_from_ids(ids, opts \\ []) do
         Ark_Elixir.Api.get("peer/transactionsFromIds", [ids: ids, network: opts])
@@ -141,7 +138,6 @@ defmodule Ark_Elixir.Transport do
         "totalFee" => 0, "version" => 0}, "height" => 2444912, "success" => true}
 
         iex> Ark_Elixir.Transport.get_height(:dev)
-        iex> Ark_Elixir.Transport.get_height("dev")
     """
     def get_height(opts \\ []) do
         Ark_Elixir.Api.get("peer/height", [network: opts])
@@ -165,7 +161,6 @@ defmodule Ark_Elixir.Transport do
         "totalFee" => 0, "version" => 0}, "height" => 2444915, "success" => true}
 
         iex> Ark_Elixir.Transport.get_status(:dev)
-        iex> Ark_Elixir.Transport.get_status("dev")
     """
     def get_status(opts \\ []) do
         Ark_Elixir.Api.get("peer/status", [network: opts])

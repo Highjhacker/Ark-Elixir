@@ -21,7 +21,6 @@ defmodule Ark_Elixir.Transaction do
         "timestamp" => 19468149, "type" => 0, "vendorField" => "turnip"}}
 
         iex> Ark_Elixir.Transaction.get_transaction("a38dc6b9e6679be706d5b39eef7dd0a7a10011e63da7623082106d90834e23e1", :dev)
-        iex> Ark_Elixir.Transaction.get_transaction("a38dc6b9e6679be706d5b39eef7dd0a7a10011e63da7623082106d90834e23e1", "dev")
     """
     def get_transaction(id, opts \\ []) do
         Ark_Elixir.Api.get("api/transactions/get", [id: id, network: opts])
@@ -52,7 +51,6 @@ defmodule Ark_Elixir.Transaction do
 
          iex> iex> Ark_Elixir.Transaction.get_transactions([limit: 2])
          iex> iex> Ark_Elixir.Transaction.get_transactions([limit: 2, network: :dev])
-         iex> iex> Ark_Elixir.Transaction.get_transactions([limit: 2, network: "dev"])
          iex> iex> Ark_Elixir.Transaction.get_transactions([network: :dev, orderBy: "timestamp"])
          ...
     """
@@ -69,7 +67,6 @@ defmodule Ark_Elixir.Transaction do
         iex> Ark_Elixir.Transaction.get_unconfirmed_transactions("validId")
         ...
         iex> Ark_Elixir.Transaction.get_unconfirmed_transactions("validId", :dev)
-        iex> Ark_Elixir.Transaction.get_unconfirmed_transactions("validId", "dev")
     """
     def get_unconfirmed_transaction(id, opts \\ []) do
         Ark_Elixir.Api.get("api/transactions/unconfirmed/get", [id: id, network: opts])
@@ -88,7 +85,6 @@ defmodule Ark_Elixir.Transaction do
 
         iex> Ark_Elixir.Transaction.get_unconfirmed_transactions([address: "validArkAddress"])
         iex> Ark_Elixir.Transaction.get_unconfirmed_transactions([address: "validArkAddress", network: :dev])
-        iex> Ark_Elixir.Transaction.get_unconfirmed_transactions([address: "validArkAddress", network: "dev"])
         ...
     """
     def get_unconfirmed_transactions(opts \\ []) do
