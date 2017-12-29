@@ -17,7 +17,7 @@ defmodule Ark_Elixir.Account do
 
         iex> Ark_Elixir.Account.get_balance("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", :dev)
     """
-    @spec get_balance(address, Api.options :: Api.response
+    @spec get_balance(address, Api.options) :: Api.response
     def get_balance(address, opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/getBalance", [address: address, network: opts])
     end
