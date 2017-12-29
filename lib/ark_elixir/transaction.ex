@@ -20,10 +20,10 @@ defmodule Ark_Elixir.Transaction do
         "signature" => "3044022030ded9cd7a1cf37f6ae85b35fd478502c916d493ecb1c6df8b1a8392323559d3022040a45aac97a6d915bc19f9ad3927395e3240dacb1b81ad00d871182e4fa130b7",
         "timestamp" => 19468149, "type" => 0, "vendorField" => "turnip"}}
 
-        iex> Ark_Elixir.Transaction.get_transaction("a38dc6b9e6679be706d5b39eef7dd0a7a10011e63da7623082106d90834e23e1", :dev)
+        iex> Ark_Elixir.Transaction.get_transaction("a38dc6b9e6679be706d5b39eef7dd0a7a10011e63da7623082106d90834e23e1", [network: :dev])
     """
     def get_transaction(id, opts \\ []) do
-        Ark_Elixir.Api.get("api/transactions/get", [id: id, network: opts])
+        Ark_Elixir.Api.get("api/transactions/get", [{:id, id} | opts])
     end
 
 
@@ -66,10 +66,10 @@ defmodule Ark_Elixir.Transaction do
 
         iex> Ark_Elixir.Transaction.get_unconfirmed_transactions("validId")
         ...
-        iex> Ark_Elixir.Transaction.get_unconfirmed_transactions("validId", :dev)
+        iex> Ark_Elixir.Transaction.get_unconfirmed_transactions("validId", [network: :dev])
     """
     def get_unconfirmed_transaction(id, opts \\ []) do
-        Ark_Elixir.Api.get("api/transactions/unconfirmed/get", [id: id, network: opts])
+        Ark_Elixir.Api.get("api/transactions/unconfirmed/get", [{:id, id} | opts])
     end
 
 

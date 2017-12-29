@@ -119,7 +119,7 @@ defmodule Ark_ElixirTest do
     end
 
     test "delegate get search delegate" do
-        req = Ark_Elixir.Delegate.search_delegates([q: "dr"])
+        req = Ark_Elixir.Delegate.search_delegates("dr")
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
     end

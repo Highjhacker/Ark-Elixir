@@ -12,10 +12,10 @@ defmodule Ark_Elixir.Account do
         %{"balance" => "272613067142", "success" => true,
           "unconfirmedBalance" => "272613067142"}
 
-        iex> Ark_Elixir.Account.get_balance("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", :dev)
+        iex> Ark_Elixir.Account.get_balance("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", [network: :dev])
     """
     def get_balance(address, opts \\ []) do
-        Ark_Elixir.Api.get("api/accounts/getBalance", [address: address, network: opts])
+        Ark_Elixir.Api.get("api/accounts/getBalance", [{:address, address} | opts])
     end
 
 
@@ -28,10 +28,10 @@ defmodule Ark_Elixir.Account do
         %{"publicKey" => "031641ff081b93279b669f7771b3fbe48ade13eadb6d5fd85bdd025655e349f008",
           "success" => true}
 
-        iex> Ark_Elixir.Account.get_public_key("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", :dev)
+        iex> Ark_Elixir.Account.get_public_key("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", [network: :dev])
     """
     def get_public_key(address, opts \\ []) do
-        Ark_Elixir.Api.get("api/accounts/getPublickey", [address: address, network: opts])
+        Ark_Elixir.Api.get("api/accounts/getPublickey", [{:address, address} | opts])
     end
 
 
@@ -43,10 +43,10 @@ defmodule Ark_Elixir.Account do
         iex> Ark_Elixir.Account.get_delegate_fee
         %{"fee" => 2500000000, "success" => true}
 
-        iex> Ark_Elixir.Account.get_delegate_fee(:dev)
+        iex> Ark_Elixir.Account.get_delegate_fee([network: :dev])
     """
     def get_delegate_fee(opts \\ []) do
-        Ark_Elixir.Api.get("api/accounts/delegates/fee", [network: opts])
+        Ark_Elixir.Api.get("api/accounts/delegates/fee", opts)
     end
 
 
@@ -66,9 +66,11 @@ defmodule Ark_Elixir.Account do
      "success" => true}
 
     iex> Ark_Elixir.Account.get_delegates("AccacXRhyBJSZ3VjQWvRuzsubes58A5gmA", [network: :dev])
+    iex> Ark_Elixir.Account.get_delegates("AccacXRhyBJSZ3VjQWvRuzsubes58A5gmA", [network: :dev, limit: 1])
     """
     def get_delegates(address, opts \\ []) do
-        Ark_Elixir.Api.get("api/accounts/delegates", [address: address, orderBy: opts[:orderBy], limit: opts[:limit], offset: opts[:offset], network: opts[:network]])
+        Ark_Elixir.Api.get("api/accounts/delegates", [{:address, address} | opts])
+        #[address: address, orderBy: opts[:orderBy], limit: opts[:limit], offset: opts[:offset], network: opts[:network]])
     end
 
 
@@ -86,10 +88,10 @@ defmodule Ark_Elixir.Account do
         "unconfirmedBalance" => "272813067142", "unconfirmedSignature" => 1},
         "success" => true}
 
-        iex> Ark_Elixir.Account.get_accounts("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", :dev)
+        iex> Ark_Elixir.Account.get_accounts("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", [network: :dev])
     """
     def get_accounts(address, opts \\ []) do
-        Ark_Elixir.Api.get("api/accounts", [address: address, network: opts])
+        Ark_Elixir.Api.get("api/accounts", [{:address, address} | opts])
     end
 
 
