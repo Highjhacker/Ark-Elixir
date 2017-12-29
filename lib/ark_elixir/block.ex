@@ -3,6 +3,8 @@ defmodule Ark_Elixir.Block do
     Operations for Blocks.
     """
 
+    @type blockid :: String.t()
+
     @doc """
     Get block by id.
 
@@ -24,6 +26,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_block("570934191207974498", :dev)
     """
+    @spec get_block(blockid, Api.options) :: Api.response
     def get_block(id, opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/get", [id: id, network: opts])
     end
@@ -56,6 +59,7 @@ defmodule Ark_Elixir.Block do
          iex> Ark_Elixir.Block.get_blocks([limit: 2, orderBy: "timestamp", network: :dev])
          ...
     """
+    @spec get_blocks(Api.options) :: Api.response
     def get_blocks(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks", opts)
     end
@@ -71,6 +75,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_epoch(:dev)
     """
+    @spec get_epoch(Api.options) :: Api.response
     def get_epoch(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/getEpoch", [network: opts])
     end
@@ -86,6 +91,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_height(:dev)
     """
+    @spec get_height(Api.options) :: Api.response
     def get_height(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/getHeight", [network: opts])
     end
@@ -102,6 +108,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_nethash(:dev)
     """
+    @spec get_nethash(Api.options) :: Api.response
     def get_nethash(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/getNethash", [network: opts])
     end
@@ -117,6 +124,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_fee(:dev)
     """
+    @spec get_fee(Api.options) :: Api.response
     def get_fee(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/getFee", [network: opts])
     end
@@ -134,6 +142,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_fees(:dev)
     """
+    @spec get_fees(Api.options) :: Api.response
     def get_fees(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/getFees", [network: opts])
     end
@@ -149,6 +158,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_milestone(:dev)
     """
+    @spec get_milestone(Api.options) :: Api.response
     def get_milestone(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/getMilestone", [network: opts])
     end
@@ -164,6 +174,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_reward(:dev)
     """
+    @spec get_reward(Api.options) :: Api.response
     def get_reward(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/getReward", [network: opts])
     end
@@ -179,6 +190,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_supply(:dev)
     """
+    @spec get_supply(Api.options) :: Api.response
     def get_supply(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/getSupply", [network: opts])
     end
@@ -197,6 +209,7 @@ defmodule Ark_Elixir.Block do
 
         iex> Ark_Elixir.Block.get_status(:dev)
     """
+    @spec get_status(Api.options) :: Api.response
     def get_status(opts \\ []) do
         Ark_Elixir.Api.get("api/blocks/getStatus", [network: opts])
     end
