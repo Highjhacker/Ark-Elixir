@@ -3,9 +3,9 @@ defmodule Ark_Elixir.Api do
     Operations for querying the API.
     """
 
-    @type options :: Keyword.t()
-    @type path :: String.t()
-    @type response :: %{String.t() => any}
+    @type options :: Keyword.t
+    @type path :: String.t
+    @type response :: %{String.t => any}
 
     @doc """
     Allow us to make a request on the network of our choice, using get_main or

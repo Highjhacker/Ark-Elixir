@@ -4,6 +4,7 @@ defmodule Ark_Elixir.Account do
     """
 
     @type address :: String.t
+    @type public_key :: String.t
 
     @doc """
     Get the balance of an account.
