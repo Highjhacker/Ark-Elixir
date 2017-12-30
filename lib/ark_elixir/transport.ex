@@ -17,7 +17,7 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_peers([network: :dev])
     """
-    @def get_peers(Api.options) :: Api.response
+    @spec get_peers(Api.options) :: Api.response
     def get_peers(opts \\ []) do
         Ark_Elixir.Api.get("peer/list", opts)
     end
