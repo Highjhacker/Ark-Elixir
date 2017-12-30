@@ -15,6 +15,7 @@ defmodule Ark_Elixir.Peer do
 
         iex> Ark_Elixir.Peer.get_peer("45.76.30.14", 4001, :dev)
     """
+    @spec get_peer(String.t, String.t, Api.options) :: Api.response
     def get_peer(ip, port, opts \\ []) do
         Ark_Elixir.Api.get("api/peers/get", [ip: ip, port: port, network: opts])
     end
@@ -40,6 +41,7 @@ defmodule Ark_Elixir.Peer do
 
         iex> Ark_Elixir.Peer.get_peers(:dev)
     """
+    @spec get_peers(Api.options) :: Api.response
     def get_peers(opts \\ []) do
         Ark_Elixir.Api.get("api/peers", [network: opts])
     end
@@ -55,6 +57,7 @@ defmodule Ark_Elixir.Peer do
 
         iex> Ark_Elixir.Peer.get_peer_version(:dev)
     """
+    @spec get_peer_version(Api.options) :: Api.response
     def get_peer_version(opts \\ []) do
         Ark_Elixir.Api.get("api/peers/version", [network: opts])
     end
