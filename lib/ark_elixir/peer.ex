@@ -13,11 +13,11 @@ defmodule Ark_Elixir.Peer do
         "ip" => "45.76.30.14", "os" => "linux4.4.0-96-generic", "port" => 4001,
         "status" => "OK", "version" => "1.0.1"}, "success" => true}
 
-        iex> Ark_Elixir.Peer.get_peer("45.76.30.14", 4001, :dev)
+        iex> Ark_Elixir.Peer.get_peer("45.76.30.14", 4001, [network: :dev])
     """
     @spec get_peer(String.t, String.t, Api.options) :: Api.response
     def get_peer(ip, port, opts \\ []) do
-        Ark_Elixir.Api.get("api/peers/get", [ip: ip, port: port, network: opts])
+        Ark_Elixir.Api.get("api/peers/get", [{:ip, ip}, {:port, port} | opts])
     end
 
 
@@ -39,11 +39,11 @@ defmodule Ark_Elixir.Peer do
         "version" => "1.0.1"},
         "success" => true}
 
-        iex> Ark_Elixir.Peer.get_peers(:dev)
+        iex> Ark_Elixir.Peer.get_peers([network: :dev])
     """
     @spec get_peers(Api.options) :: Api.response
     def get_peers(opts \\ []) do
-        Ark_Elixir.Api.get("api/peers", [network: opts])
+        Ark_Elixir.Api.get("api/peers", opts)
     end
 
 
@@ -55,10 +55,10 @@ defmodule Ark_Elixir.Peer do
         iex> Ark_Elixir.Peer.get_peer_version
         %{"build" => "", "success" => true, "version" => "1.0.1"}
 
-        iex> Ark_Elixir.Peer.get_peer_version(:dev)
+        iex> Ark_Elixir.Peer.get_peer_version([network: :dev])
     """
     @spec get_peer_version(Api.options) :: Api.response
     def get_peer_version(opts \\ []) do
-        Ark_Elixir.Api.get("api/peers/version", [network: opts])
+        Ark_Elixir.Api.get("api/peers/version", opts)
     end
 end

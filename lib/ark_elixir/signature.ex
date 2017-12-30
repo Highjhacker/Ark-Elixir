@@ -24,10 +24,10 @@ defmodule Ark_Elixir.Signature do
 
         iex> Ark_Elixir.Signature.get_signature_fee("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t")
         %{"fee" => 500000000, "success" => true}
-        iex> Ark_Elixir.Signature.get_signature_fee("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t", :dev)
+        iex> Ark_Elixir.Signature.get_signature_fee("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t", [network: :dev])
     """
     @spec get_signature_fee(Account.address, Api.options) :: Api.response
     def get_signature_fee(address, opts \\ []) do
-        Ark_Elixir.Api.get("api/signatures/fee", [address: address, network: opts])
+        Ark_Elixir.Api.get("api/signatures/fee", [{:address, address} | opts])
     end
 end
