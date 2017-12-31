@@ -10,6 +10,12 @@ defmodule Ark_ElixirTest do
         assert elem(success, 1) == true
     end
 
+    test "account get balance on dev network" do
+        req = Ark_Elixir.Account.get_balance("DS2YQzkSCW1wbTjbfFGVPzmgUe1tNFQstN", [network: :dev])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
     test "account get public key" do
         req = Ark_Elixir.Account.get_public_key("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t")
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
@@ -39,6 +45,20 @@ defmodule Ark_ElixirTest do
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
     end
+
+    test "account get top accounts with a limit of 5" do
+        req = Ark_Elixir.Account.get_top_accounts([limit: 5])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    # It seems that we can't have the top accounts atm
+    # see : http://167.114.29.55:4002/api/accounts/top
+    test "account get top accounts with a limit of 5 on the dev network" do
+        req = Ark_Elixir.Account.get_top_accounts([limit: 5, network: :dev])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == false
+    end
     # / ACCOUNTS
 
 
@@ -49,14 +69,38 @@ defmodule Ark_ElixirTest do
         assert elem(success, 1) == true
     end
 
+    test "block get block from dev network" do
+      req = Ark_Elixir.Block.get_block("10013373100062296151", [network: :dev])
+      success = Enum.find(req, fn{key, _} -> key == "success" end)
+      assert elem(success, 1) == true
+    end
+
     test "block get blocks" do
         req = Ark_Elixir.Block.get_blocks
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
     end
 
+    test "block get blocks with a limit of 5" do
+        req = Ark_Elixir.Block.get_blocks([limit: 5])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "block get blocks with a limit of 5 on the dev network" do
+        req = Ark_Elixir.Block.get_blocks([network: :dev, limit: 5])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
     test "block get epoch" do
         req = Ark_Elixir.Block.get_epoch
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "block get epoch on the dev network" do
+        req = Ark_Elixir.Block.get_epoch([network: :dev])
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
     end
@@ -124,6 +168,18 @@ defmodule Ark_ElixirTest do
         assert elem(success, 1) == true
     end
 
+    test "delegate get search delegate with a limit of 2" do
+        req = Ark_Elixir.Delegate.search_delegates("dr", [limit: 2])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get search delegate with a limit of 2 on the dev network" do
+        req = Ark_Elixir.Delegate.search_delegates("dr", [limit: 2, network: :dev])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
     test "delegate get voters" do
         req = Ark_Elixir.Delegate.get_voters("031641ff081b93279b669f7771b3fbe48ade13eadb6d5fd85bdd025655e349f008")
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
@@ -144,6 +200,12 @@ defmodule Ark_ElixirTest do
 
     test "delegate get delegates" do
         req = Ark_Elixir.Delegate.get_delegates
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "delegate get delegates on the dev network" do
+        req = Ark_Elixir.Delegate.get_delegates([network: :dev])
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
     end
@@ -171,6 +233,12 @@ defmodule Ark_ElixirTest do
     # LOADER
     test "loader get status" do
       req = Ark_Elixir.Loader.get_status()
+      success =  Enum.find(req, fn {key, _} -> key == "success" end)
+      assert elem(success, 1) == true
+    end
+
+    test "loader get status on the dev network" do
+      req = Ark_Elixir.Loader.get_status([network: :dev])
       success =  Enum.find(req, fn {key, _} -> key == "success" end)
       assert elem(success, 1) == true
     end
@@ -217,6 +285,12 @@ defmodule Ark_ElixirTest do
         assert elem(success, 1) == true
     end
 
+    test "peer get peers on the dev network" do
+        req = Ark_Elixir.Peer.get_peers([network: :dev])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
     test "peer get peer version" do
         req = Ark_Elixir.Peer.get_peer_version
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
@@ -232,8 +306,14 @@ defmodule Ark_ElixirTest do
         assert elem(success, 1) == true
     end
 
+    test "signature get signature fee on the dev network" do
+        req = Ark_Elixir.Signature.get_signature_fee([network: :dev])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
     test "signature get signature fee from address" do
-        req = Ark_Elixir.Signature.get_signature_fee("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t")
+        req = Ark_Elixir.Signature.get_signature_fee([address: "Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t"])
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
     end
@@ -243,6 +323,12 @@ defmodule Ark_ElixirTest do
     # TRANSACTION
     test "transaction get transaction from id" do
         req = Ark_Elixir.Transaction.get_transaction("a38dc6b9e6679be706d5b39eef7dd0a7a10011e63da7623082106d90834e23e1")
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
+    test "transaction get transaction from id on the dev network" do
+        req = Ark_Elixir.Transaction.get_transaction("83487f19ea0f3e3235f98dd07f5f2234ed30e42dedc5e8a3ccce9ec0d40710b3", [network: :dev])
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
     end
@@ -272,6 +358,13 @@ defmodule Ark_ElixirTest do
         req = Ark_Elixir.Transport.get_peers
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
+    end
+
+    # Should return "Request is made on the wrong network"
+    test "transport get peers on the dev network" do
+        req = Ark_Elixir.Transport.get_peers([network: :dev])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == false
     end
 
     # Need to work on the main function
@@ -314,6 +407,13 @@ defmodule Ark_ElixirTest do
         req = Ark_Elixir.Transport.get_height
         success =  Enum.find(req, fn {key, _} -> key == "success" end)
         assert elem(success, 1) == true
+    end
+
+    # Should return "Request is made on the wrong network"
+    test "transport get height on the dev network" do
+        req = Ark_Elixir.Transport.get_height([network: :dev])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == false
     end
 
     test "transport get status" do

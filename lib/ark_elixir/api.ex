@@ -64,7 +64,7 @@ defmodule Ark_Elixir.Api do
     """
     @spec get_dev(path, options) :: response
     def get_dev(endpoint, opts \\ []) do
-      response = HTTPoison.get!("http://45.77.154.237:4002/#{endpoint}" <> query(opts), get_main_headers())
+      response = HTTPoison.get!("http://167.114.29.55:4002/#{endpoint}" <> query(opts), get_main_headers())
       Poison.decode!(response.body)
     end
 
