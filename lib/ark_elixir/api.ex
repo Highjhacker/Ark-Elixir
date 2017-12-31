@@ -3,6 +3,10 @@ defmodule Ark_Elixir.Api do
     Operations for querying the API.
     """
 
+    @type options :: Keyword.t
+    @type path :: String.t
+    @type response :: %{String.t => any}
+
     @doc """
     Allow us to make a request on the network of our choice, using get_main or
     get_dev, to the desired endpoint, with the possibility of passing optional
@@ -20,6 +24,7 @@ defmodule Ark_Elixir.Api do
       iex> Ark_Elixir.Api.get("api/blocks", [network: :bar]) # Incorrect network, switching on the main one
       iex> Ark_Elixir.Api.get("api/blocks", [network: :dev]) # You can specify the network as an Atom
     """
+    @spec get(path, options) :: response
     def get(endpoint, opts \\ []) do
       case opts[:network] do
         :main -> get_main(endpoint, opts)
@@ -33,6 +38,7 @@ defmodule Ark_Elixir.Api do
     Allow us to make a request on the Main network to the desired endpoint, with
     the possibility of passing optional parameters.
     """
+    @spec get_main(path, options) :: response
     def get_main(endpoint, opts \\ []) do
       HTTPotion.get("https://api.arknode.net/#{endpoint}" <> query(opts),
             headers: get_main_headers())
@@ -43,6 +49,7 @@ defmodule Ark_Elixir.Api do
     @doc """
     Get the adequates headers for the Ark Main network.
     """
+    @spec get_main_headers() :: [nethash: String.t(), version: String.t(), port: String.t()]
     def get_main_headers do
       [
         nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988",
@@ -55,6 +62,7 @@ defmodule Ark_Elixir.Api do
     Allow us to make a request on the Dev network to the desired endpoint, with
     the possibility of passing optional parameters.
     """
+    @spec get_dev(path, options) :: response
     def get_dev(endpoint, opts \\ []) do
       HTTPotion.get("http://45.77.154.237:4002/#{endpoint}" <> query(opts),
             headers: get_dev_headers(), timeout: 10_000)
@@ -65,6 +73,7 @@ defmodule Ark_Elixir.Api do
     @doc """
     Get the adequates headers for the Ark Dev network.
     """
+    @spec get_dev_headers() :: [nethash: String.t(), version: String.t(), port: String.t()]
     def get_dev_headers do
       [
         nethash: "578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23",
@@ -76,6 +85,7 @@ defmodule Ark_Elixir.Api do
     @doc """
     Allow us to pass optional parameters to our request.
     """
+    @spec query(options) :: String.t()
     def query(opts \\ []) when is_list(opts) do
         string = opts
         |> Enum.map(fn {key, value} -> "#{key}=#{value}" end)

@@ -17,6 +17,7 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_peers([network: :dev])
     """
+    @spec get_peers(Api.options) :: Api.response
     def get_peers(opts \\ []) do
         Ark_Elixir.Api.get("peer/list", opts)
     end
@@ -34,6 +35,7 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_common_blocks("5807533976636630922, 7191952529633383827", [network: :dev])
     """
+    @spec get_common_blocks([String.t], Api.options) :: Api.response
     def get_common_blocks(ids, opts \\ []) do
         Ark_Elixir.Api.get("peer/blocks/common", [{:ids, ids} | opts])
     end
@@ -49,6 +51,7 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_blocks("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ", [network: :dev])
     """
+    @spec get_blocks(String.t, Api.options) :: Api.response
     def get_blocks(address, opts \\ []) do
         Ark_Elixir.Api.get("peer/blocks", [{:address, address} | opts])
     end
@@ -65,6 +68,7 @@ defmodule Ark_Elixir.Transport do
         ...
         iex> Ark_Elixir.Transport.get_block("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ",  [network: :dev])
     """
+    @spec get_block(String.t, Api.options) :: Api.response
     def get_block(address, opts \\ []) do
         Ark_Elixir.Api.get("peer/block", [{:address, address} | opts])
     end
@@ -80,6 +84,7 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_transactions([network: :dev])
     """
+    @spec get_transactions(Api.options) :: Api.response
     def get_transactions(opts \\ []) do
         Ark_Elixir.Api.get("peer/transactions", opts)
     end
@@ -93,6 +98,7 @@ defmodule Ark_Elixir.Transport do
         iex> Ark_Elixir.Transport.post_transaction
         ...
     """
+    @spec post_transaction() :: :ok
     def post_transaction do
         IO.puts "Not implemented !"
     end
@@ -117,6 +123,7 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_transactions_from_ids("e9f1ff96ccaf9ebcadb0e1c0827c606a71a88c258c6a3ec1a880be000996dd25", [network: :dev])
     """
+    @spec get_transactions_from_ids(String.t, Api.options) :: Api.response
     def get_transactions_from_ids(ids, opts \\ []) do
         Ark_Elixir.Api.get("peer/transactionsFromIds", [{:ids, ids} | opts])
     end
@@ -139,6 +146,7 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_height([network: :dev])
     """
+    @spec get_height(Api.options) :: Api.response
     def get_height(opts \\ []) do
         Ark_Elixir.Api.get("peer/height", opts)
     end
@@ -162,6 +170,7 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_status([network: :dev])
     """
+    @spec get_status(Api.options) :: Api.response
     def get_status(opts \\ []) do
         Ark_Elixir.Api.get("peer/status", opts)
     end

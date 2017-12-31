@@ -3,6 +3,9 @@ defmodule Ark_Elixir.Account do
     Operations for Accounts.
     """
 
+    @type address :: String.t
+    @type public_key :: String.t
+
     @doc """
     Get the balance of an account.
 
@@ -14,6 +17,7 @@ defmodule Ark_Elixir.Account do
 
         iex> Ark_Elixir.Account.get_balance("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", [network: :dev])
     """
+    @spec get_balance(address, Api.options) :: Api.response
     def get_balance(address, opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/getBalance", [{:address, address} | opts])
     end
@@ -30,6 +34,7 @@ defmodule Ark_Elixir.Account do
 
         iex> Ark_Elixir.Account.get_public_key("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", [network: :dev])
     """
+    @spec get_public_key(address, Api.options) :: Api.response
     def get_public_key(address, opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/getPublickey", [{:address, address} | opts])
     end
@@ -45,6 +50,7 @@ defmodule Ark_Elixir.Account do
 
         iex> Ark_Elixir.Account.get_delegate_fee([network: :dev])
     """
+    @spec get_delegate_fee(Api.options) :: Api.response
     def get_delegate_fee(opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/delegates/fee", opts)
     end
@@ -68,6 +74,7 @@ defmodule Ark_Elixir.Account do
     iex> Ark_Elixir.Account.get_delegates("AccacXRhyBJSZ3VjQWvRuzsubes58A5gmA", [network: :dev])
     iex> Ark_Elixir.Account.get_delegates("AccacXRhyBJSZ3VjQWvRuzsubes58A5gmA", [network: :dev, limit: 1])
     """
+    @spec get_delegates(address, Api.options) :: Api.response
     def get_delegates(address, opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/delegates", [{:address, address} | opts])
         #[address: address, orderBy: opts[:orderBy], limit: opts[:limit], offset: opts[:offset], network: opts[:network]])
@@ -90,6 +97,7 @@ defmodule Ark_Elixir.Account do
 
         iex> Ark_Elixir.Account.get_accounts("ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9", [network: :dev])
     """
+    @spec get_accounts(address, Api.options) :: Api.response
     def get_accounts(address, opts \\ []) do
         Ark_Elixir.Api.get("api/accounts", [{:address, address} | opts])
     end
@@ -115,6 +123,7 @@ defmodule Ark_Elixir.Account do
          iex> Ark_Elixir.ACcount.get_top_accounts([limit: 10]) # Limit to 10 results
          iex> Ark_Elixir.ACcount.get_top_accounts([limit: 10, network: :dev])
     """
+    @spec get_top_accounts(Api.options) :: Api.response
     def get_top_accounts(opts \\ []) do
         Ark_Elixir.Api.get("api/accounts/top", opts)
     end

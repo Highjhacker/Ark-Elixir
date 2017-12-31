@@ -13,6 +13,7 @@ defmodule Ark_Elixir.Loader do
 
         iex> Ark_Elixir.Loader.get_status([network: :dev])
     """
+    @spec get_status(Api.options) :: Api.response
     def get_status(opts \\ []) do
         Ark_Elixir.Api.get("api/loader/status", opts)
     end
@@ -29,6 +30,7 @@ defmodule Ark_Elixir.Loader do
 
         iex> Ark_Elixir.Loader.get_sync([network: :dev])
     """
+    @spec get_sync(Api.options) :: Api.response
     def get_sync(opts \\ []) do
         Ark_Elixir.Api.get("api/loader/status/sync", opts)
     end
@@ -46,6 +48,7 @@ defmodule Ark_Elixir.Loader do
 
         iex> Ark_Elixir.Loader.autoconfigure([network: :dev])
     """
+    @spec autoconfigure(Api.options) :: Api.response
     def autoconfigure(opts \\ []) do
         Ark_Elixir.Api.get("api/loader/autoconfigure", opts)
     end
