@@ -1,4 +1,5 @@
 defmodule Ark_Elixir.Api do
+  use HTTPoison.Base
     @moduledoc """
     Operations for querying the API.
     """
@@ -40,11 +41,10 @@ defmodule Ark_Elixir.Api do
     """
     @spec get_main(path, options) :: response
     def get_main(endpoint, opts \\ []) do
-      HTTPotion.get("https://api.arknode.net/#{endpoint}" <> query(opts),
-            headers: get_main_headers())
-      |> Map.get(:body)
-      |> Poison.Parser.parse!
+      response = HTTPoison.get!("https://api.arknode.net/#{endpoint}" <> query(opts), get_main_headers())
+      Poison.decode!(response.body)
     end
+
 
     @doc """
     Get the adequates headers for the Ark Main network.
@@ -64,10 +64,8 @@ defmodule Ark_Elixir.Api do
     """
     @spec get_dev(path, options) :: response
     def get_dev(endpoint, opts \\ []) do
-      HTTPotion.get("http://45.77.154.237:4002/#{endpoint}" <> query(opts),
-            headers: get_dev_headers(), timeout: 10_000)
-      |> Map.get(:body)
-      |> Poison.Parser.parse!
+      response = HTTPoison.get!("http://45.77.154.237:4002/#{endpoint}" <> query(opts), get_main_headers())
+      Poison.decode!(response.body)
     end
 
     @doc """
