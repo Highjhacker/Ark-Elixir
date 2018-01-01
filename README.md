@@ -42,6 +42,35 @@ iex> Ark_Elixir.Account.get_delegate_fee
 %{"fee" => 2500000000, "success" => true}
 ```
 
+### Network
+With the release of the next version, we should be able to switch between networks. For example, query on the
+dev network instead of the main one. The current implementation works as intended.
+
+Every modules (Account, Block, ...) can use this feature to make a query on a different network.
+
+A few examples for getting started :
+
+```elixir
+# Won't work cause it's a main block
+Ark_Elixir.Block.get_block("570934191207974498", [network: :dev])
+# Will work cause by default, the main network is choosed
+Ark_Elixir.Block.get_block("570934191207974498")
+# You can specify it again, just to be sure.
+# Like this
+Ark_Elixir.Block.get_block("570934191207974498", [network: :main])
+
+# For more complex queries with a lot of others parameters, it's quite simple too
+Ark_Elixir.Block.get_blocks([limit: 2, orderBy: "timestamp", network: :dev])
+# Order doesn't matter
+Ark_Elixir.Block.get_blocks([limit: 2, network: :dev, orderBy: "timestamp"])
+
+# For simple queries like "get_height" it's simple too !
+# You can still use the basic version without parameters
+iex> Ark_Elixir.Block.get_height
+# Or
+iex> Ark_Elixir.Block.get_height([network: :dev])
+```
+
 ### Account
 
 ```elixir
@@ -62,7 +91,7 @@ iex> Ark_Elixir.Block.get_status
 ### Delegate
 
 ```elixir
-iex> Ark_Elixir.Delegate.search_delegates([q: "dr", limit: 2])
+iex> Ark_Elixir.Delegate.search_delegates("dr", [limit: 2])
 
 %{"delegates" => [%{"address" => "ANwjGUcVbLXpqbBUWbjUBQWkr4MWVDuJu9",
      "missedblocks" => 185, "producedblocks" => 27885,
@@ -141,6 +170,8 @@ iex> Ark_Elixir.Transport_get_status
 - [ ] Example app in Erlang.
 - [x] Setup Travis.
 - [ ] Setup [Code Coverage](https://github.com/dwyl/repo-badges).
+- [x] Handle dev network (and others network eventually)
+- [ ] Handle timeouts of the query. If one of the query doesn't works, we should maybe retry the same query on an other valid url from the same network ?
 - [ ] ...
 
 ## Authors

@@ -19,9 +19,12 @@ defmodule Ark_Elixir.Transaction do
         "senderPublicKey" => "02c7455bebeadde04728441e0f57f82f972155c088252bf7c1365eb0dc84fbf5de",
         "signature" => "3044022030ded9cd7a1cf37f6ae85b35fd478502c916d493ecb1c6df8b1a8392323559d3022040a45aac97a6d915bc19f9ad3927395e3240dacb1b81ad00d871182e4fa130b7",
         "timestamp" => 19468149, "type" => 0, "vendorField" => "turnip"}}
+
+        iex> Ark_Elixir.Transaction.get_transaction("a38dc6b9e6679be706d5b39eef7dd0a7a10011e63da7623082106d90834e23e1", [network: :dev])
     """
-    def get_transaction(id) do
-        Ark_Elixir.Api.get("api/transactions/get", [id: id])
+    @spec get_transaction(String.t, Api.options) :: Api.response
+    def get_transaction(id, opts \\ []) do
+        Ark_Elixir.Api.get("api/transactions/get", [{:id, id} | opts])
     end
 
 
@@ -48,8 +51,11 @@ defmodule Ark_Elixir.Transaction do
          ...
 
          iex> iex> Ark_Elixir.Transaction.get_transactions([limit: 2])
+         iex> iex> Ark_Elixir.Transaction.get_transactions([limit: 2, network: :dev])
+         iex> iex> Ark_Elixir.Transaction.get_transactions([network: :dev, orderBy: "timestamp"])
          ...
     """
+    @spec get_transactions(Api.options) :: Api.response
     def get_transactions(opts \\ []) do
         Ark_Elixir.Api.get("api/transactions", opts)
     end
@@ -62,9 +68,11 @@ defmodule Ark_Elixir.Transaction do
 
         iex> Ark_Elixir.Transaction.get_unconfirmed_transactions("validId")
         ...
+        iex> Ark_Elixir.Transaction.get_unconfirmed_transactions("validId", [network: :dev])
     """
-    def get_unconfirmed_transaction(id) do
-        Ark_Elixir.Api.get("api/transactions/unconfirmed/get", [id: id])
+    @spec get_unconfirmed_transaction(String.t, Api.options) :: Api.response
+    def get_unconfirmed_transaction(id, opts \\ []) do
+        Ark_Elixir.Api.get("api/transactions/unconfirmed/get", [{:id, id} | opts])
     end
 
 
@@ -79,10 +87,11 @@ defmodule Ark_Elixir.Transaction do
         %{"success" => true, "transactions" => []}
 
         iex> Ark_Elixir.Transaction.get_unconfirmed_transactions([address: "validArkAddress"])
+        iex> Ark_Elixir.Transaction.get_unconfirmed_transactions([address: "validArkAddress", network: :dev])
         ...
     """
+    @spec get_unconfirmed_transactions(Api.options) :: Api.response
     def get_unconfirmed_transactions(opts \\ []) do
-        # senderPublicKey, address
         Ark_Elixir.Api.get("api/transactions/unconfirmed", opts)
     end
 end

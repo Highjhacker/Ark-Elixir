@@ -14,9 +14,12 @@ defmodule Ark_Elixir.Transport do
         status" => "OK", "version" => "1.0.1"},
         ...
         "success" => true}
+
+        iex> Ark_Elixir.Transport.get_peers([network: :dev])
     """
-    def get_peers do
-        Ark_Elixir.Api.get("peer/list")
+    @spec get_peers(Api.options) :: Api.response
+    def get_peers(opts \\ []) do
+        Ark_Elixir.Api.get("peer/list", opts)
     end
 
 
@@ -29,9 +32,12 @@ defmodule Ark_Elixir.Transport do
         %{"common" => %{"height" => 2444835, "id" => "5807533976636630922",
         "previousBlock" => "5933198505652557034", "timestamp" => 19737896},
         "lastBlockHeight" => 2444867, "success" => true}
+
+        iex> Ark_Elixir.Transport.get_common_blocks("5807533976636630922, 7191952529633383827", [network: :dev])
     """
-    def get_common_blocks(ids) do
-        Ark_Elixir.Api.get("peer/blocks/common", [ids: ids])
+    @spec get_common_blocks([String.t], Api.options) :: Api.response
+    def get_common_blocks(ids, opts \\ []) do
+        Ark_Elixir.Api.get("peer/blocks/common", [{:ids, ids} | opts])
     end
 
 
@@ -42,9 +48,12 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_blocks("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ")
         %{"blocks" => [], "success" => true}
+
+        iex> Ark_Elixir.Transport.get_blocks("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ", [network: :dev])
     """
-    def get_blocks(address) do
-        Ark_Elixir.Api.get("peer/blocks", [address: address])
+    @spec get_blocks(String.t, Api.options) :: Api.response
+    def get_blocks(address, opts \\ []) do
+        Ark_Elixir.Api.get("peer/blocks", [{:address, address} | opts])
     end
 
 
@@ -57,9 +66,11 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_block("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ")
         ...
+        iex> Ark_Elixir.Transport.get_block("AJbmGnDAx9y91MQCDApyaqZhn6fBvYX9iJ",  [network: :dev])
     """
-    def get_block(address) do
-        Ark_Elixir.Api.get("peer/block", [address: address])
+    @spec get_block(String.t, Api.options) :: Api.response
+    def get_block(address, opts \\ []) do
+        Ark_Elixir.Api.get("peer/block", [{:address, address} | opts])
     end
 
 
@@ -70,9 +81,12 @@ defmodule Ark_Elixir.Transport do
 
         iex> Ark_Elixir.Transport.get_transactions
         %{"success" => true, "transactions" => []}
+
+        iex> Ark_Elixir.Transport.get_transactions([network: :dev])
     """
-    def get_transactions do
-        Ark_Elixir.Api.get("peer/transactions")
+    @spec get_transactions(Api.options) :: Api.response
+    def get_transactions(opts \\ []) do
+        Ark_Elixir.Api.get("peer/transactions", opts)
     end
 
 
@@ -84,6 +98,7 @@ defmodule Ark_Elixir.Transport do
         iex> Ark_Elixir.Transport.post_transaction
         ...
     """
+    @spec post_transaction() :: :ok
     def post_transaction do
         IO.puts "Not implemented !"
     end
@@ -105,9 +120,12 @@ defmodule Ark_Elixir.Transport do
         "senderPublicKey" => "039aab9d87c271ea45aa16bfe2487e8534b8dc1ac742e124e9bf8afa0b8c648e02",
         "signature" => "3045022100fc5b78bcf9d43ef96a7ab5c43b9dc77b7d32e79b61ef3febe124ca89a190fb3b02201b609060a07d4da3a80f248f2ad130ff4a4d590d7670af5d333b533cbba5d302",
         "timestamp" => 19737857, "type" => 0}]}
+
+        iex> Ark_Elixir.Transport.get_transactions_from_ids("e9f1ff96ccaf9ebcadb0e1c0827c606a71a88c258c6a3ec1a880be000996dd25", [network: :dev])
     """
-    def get_transactions_from_ids(ids) do
-        Ark_Elixir.Api.get("peer/transactionsFromIds", [ids: ids])
+    @spec get_transactions_from_ids(String.t, Api.options) :: Api.response
+    def get_transactions_from_ids(ids, opts \\ []) do
+        Ark_Elixir.Api.get("peer/transactionsFromIds", [{:ids, ids} | opts])
     end
 
 
@@ -125,9 +143,12 @@ defmodule Ark_Elixir.Transport do
         "payloadLength" => 0, "previousBlock" => "3874492067627887922",
         "reward" => 200000000, "timestamp" => 19738536, "totalAmount" => 0,
         "totalFee" => 0, "version" => 0}, "height" => 2444912, "success" => true}
+
+        iex> Ark_Elixir.Transport.get_height([network: :dev])
     """
-    def get_height do
-        Ark_Elixir.Api.get("peer/height")
+    @spec get_height(Api.options) :: Api.response
+    def get_height(opts \\ []) do
+        Ark_Elixir.Api.get("peer/height", opts)
     end
 
 
@@ -146,8 +167,11 @@ defmodule Ark_Elixir.Transport do
         "payloadLength" => 0, "previousBlock" => "16552919518108735463",
         "reward" => 200000000, "timestamp" => 19738560, "totalAmount" => 0,
         "totalFee" => 0, "version" => 0}, "height" => 2444915, "success" => true}
+
+        iex> Ark_Elixir.Transport.get_status([network: :dev])
     """
-    def get_status do
-        Ark_Elixir.Api.get("peer/status")
+    @spec get_status(Api.options) :: Api.response
+    def get_status(opts \\ []) do
+        Ark_Elixir.Api.get("peer/status", opts)
     end
 end
