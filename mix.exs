@@ -4,7 +4,7 @@ defmodule Ark_Elixir.Mixfile do
   def project do
     [
       app: :ark_elixir,
-      version: "0.1.2",
+      version: "0.1.3",
       elixir: "~> 1.5",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
@@ -20,7 +20,7 @@ defmodule Ark_Elixir.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      applications: [:httpoison],
+      applications: [:httpotion],
       extra_applications: [:logger]
     ]
   end
@@ -30,10 +30,9 @@ defmodule Ark_Elixir.Mixfile do
     [
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
-      #{:httpotion, "~> 3.0.2"},
+      {:httpotion, "~> 3.0.2"},
       {:ex_doc, "~> 0.18.1", only: :dev, runtime: false},
       {:poison, "~> 3.1"},
-      {:httpoison, "~> 0.13"}
     ]
   end
 

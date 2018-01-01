@@ -18,7 +18,7 @@ The package can be installed by adding `ark_elixir` to your list of dependencies
 ```elixir
 def deps do
   [
-    {:ark_elixir, "~> 0.1.2"}
+    {:ark_elixir, "~> 0.1.3"}
   ]
 end
 ```
@@ -43,7 +43,7 @@ iex> Ark_Elixir.Account.get_delegate_fee
 ```
 
 ### Network
-With the release of the next version, we should be able to switch between networks. For example, query on the
+With the release of the 0.1.3, we should be able to switch between networks. For example, query on the
 dev network instead of the main one. The current implementation works as intended.
 
 Every modules (Account, Block, ...) can use this feature to make a query on a different network.
@@ -170,13 +170,18 @@ iex> Ark_Elixir.Transport_get_status
 - [ ] Example app in Erlang.
 - [x] Setup Travis.
 - [ ] Setup [Code Coverage](https://github.com/dwyl/repo-badges).
-- [x] Handle dev network (and others network eventually)
+- [x] Handle dev network (and others network eventually).
 - [ ] Handle timeouts of the query. If one of the query doesn't works, we should maybe retry the same query on an other valid url from the same network ?
+- [ ] Create a new transaction.
 - [ ] ...
 
 ## Authors
 
 - Jolan Beer - Highjhacker
+
+## Contributors
+-
+-
 
 ## License
 
