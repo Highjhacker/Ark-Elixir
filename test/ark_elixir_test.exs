@@ -16,6 +16,12 @@ defmodule Ark_ElixirTest do
         assert elem(success, 1) == true
     end
 
+    test "account get balance on kapu main network" do
+        req = Ark_Elixir.Account.get_balance("KUQc9hNoG4o81t1gwkYTapPqJrxp8Zxf9Y", [network: :kapu])
+        success =  Enum.find(req, fn {key, _} -> key == "success" end)
+        assert elem(success, 1) == true
+    end
+
     test "account get public key" do
         req = Ark_Elixir.Account.get_public_key("Aasu14aTs9ipZdy1FMv7ay1Vqn3jPskA8t")
         success =  Enum.find(req, fn {key, _} -> key == "success" end)

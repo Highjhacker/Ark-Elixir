@@ -18,7 +18,7 @@ The package can be installed by adding `ark_elixir` to your list of dependencies
 ```elixir
 def deps do
   [
-    {:ark_elixir, "~> 0.1.3"}
+    {:ark_elixir, "~> 0.1.4"}
   ]
 end
 ```
@@ -47,6 +47,8 @@ With the release of the 0.1.3, we should be able to switch between networks. For
 dev network instead of the main one. The current implementation works as intended.
 
 Every modules (Account, Block, ...) can use this feature to make a query on a different network.
+
+The currently available networks are the followings ; :dev, :main, :kapu
 
 A few examples for getting started :
 

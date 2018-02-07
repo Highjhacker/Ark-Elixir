@@ -31,6 +31,7 @@ defmodule Ark_Elixir.Api do
         :main -> get_main(endpoint, opts)
         :dev -> get_dev(endpoint, opts)
         :dark -> get_dev(endpoint, opts)
+        :kapu -> get_kapu_main(endpoint, opts)
         _ -> get_main(endpoint, opts)
       end
     end
@@ -77,6 +78,28 @@ defmodule Ark_Elixir.Api do
         nethash: "578e820911f24e039733b45e4882b73e301f813a0d2c31330dafda84534ffa23",
         version: "1.1.1",
         port: "4002",
+      ]
+    end
+
+    @doc """
+    Allow us to make a request on the Kapu Main network to the desired endpoint, with
+    the possibility of passing optional parameters.
+    """
+    @spec get_kapu_main(path, options) :: response
+    def get_kapu_main(endpoint, opts \\ []) do
+      response = HTTPoison.get!("https://api.kapunode.net/#{endpoint}" <> query(opts), get_kapu_headers())
+      Poison.decode!(response.body)
+    end
+
+    @doc """
+    Get the adequates headers for the Kapu Main network.
+    """
+    @spec get_kapu_headers() :: [nethash: String.t(), version: String.t(), port: String.t()]
+    def get_kapu_headers do
+      [
+        nethash: "6e84d08bd299ed97c212c886c98a57e36545c8f5d645ca7eeae63a8bd62d8988",
+        version: "1.0.1",
+        port: "4001",
       ]
     end
 
